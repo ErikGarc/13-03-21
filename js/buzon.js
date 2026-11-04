@@ -44,6 +44,100 @@ const encabezadoPapel = modalCarta.querySelector(".encabezado-papel");
 let botonAnterior = null;
 let cerrandoCarta = false;
 
+/* ==================================
+   MÚSICA ROMÁNTICA DE CADA CARTA
+================================== */
+
+const reproductorCarta = new Audio();
+const contenedorMusica =
+    document.getElementById("reproductorRomantico");
+
+const botonMusica =
+    document.getElementById("botonMusica");
+
+const estadoMusica =
+    document.getElementById("estadoMusica");
+
+reproductorCarta.loop = true;
+reproductorCarta.volume = 0.5;
+
+
+function reproducirMusicaCarta(carta) {
+
+    reproductorCarta.pause();
+    reproductorCarta.removeAttribute("src");
+    reproductorCarta.load();
+
+    contenedorMusica.hidden = true;
+
+    if (!carta.musica) {
+        return;
+    }
+
+    reproductorCarta.src = carta.musica;
+    contenedorMusica.hidden = false;
+
+    estadoMusica.textContent = "Cargando canción...";
+    botonMusica.textContent = "⏸ Pausar";
+
+    reproductorCarta.play()
+        .then(() => {
+            estadoMusica.textContent =
+                "🎶 Reproduciendo para ti...";
+        })
+        .catch(error => {
+            console.warn("Error al reproducir:", error);
+
+            estadoMusica.textContent =
+                "Presiona Reproducir para escuchar ❤️";
+
+            botonMusica.textContent = "▶ Reproducir";
+        });
+}
+
+
+/* ==================================
+   CONTROL DE MÚSICA
+================================== */
+
+botonMusica.addEventListener("click", async () => {
+
+    if (reproductorCarta.paused) {
+
+        try {
+            await reproductorCarta.play();
+
+            botonMusica.textContent = "⏸ Pausar";
+
+            estadoMusica.textContent =
+                "🎶 Reproduciendo para ti...";
+
+        } catch (error) {
+
+            console.warn("No se pudo reproducir:", error);
+
+            estadoMusica.textContent =
+                "No se pudo reproducir la canción.";
+        }
+
+    } else {
+
+        reproductorCarta.pause();
+
+        botonMusica.textContent = "▶ Reanudar";
+
+        estadoMusica.textContent =
+            "⏸ Música pausada";
+    }
+});
+
+
+function detenerMusicaCarta() {
+    reproductorCarta.pause();
+    reproductorCarta.currentTime = 0;
+
+    contenedorMusica.hidden = true;
+}
 
 let CLAVE_CARTAS_LEIDAS = "";
 
@@ -118,6 +212,7 @@ function abrirModalCarta(carta, boton) {
 
     contenidoModal.textContent =
         carta.contenido || "";
+    reproducirMusicaCarta(carta);   
 
     botonAnterior = boton;
 
@@ -207,6 +302,7 @@ async function cerrarModalCarta() {
     }
 
     modalCarta.hidden = true;
+    detenerMusicaCarta();
 
     document.body.style.overflow = "";
 
@@ -328,7 +424,7 @@ onAuthStateChanged(auth, async (usuario) => {
         const totalCartas = cartasOrdenadas.length;
 
 const mensajeContador = totalCartas === 1
-    ? "Tienes 1 cartita de amor 💌"
+    ? "Tienes 1 cartita 💌"
     : `Tienes ${totalCartas} cartitas de amor 💌`;
 
 

@@ -263,3 +263,17 @@ body.pagina-admin {
 .boton-eliminar:hover {
     background: #f8c9ce;
 }
+
+/* ==================================
+   AYUDA PARA LA MÚSICA
+================================== */
+
+.ayuda-musica {
+    display: block;
+    margin-top: 7px;
+    margin-bottom: 15px;
+
+    color: #b78499;
+    font-size: 12px;
+    line-height: 1.5;
+}

@@ -224,3 +224,77 @@
         font-size: 32px;
     }
 }
+
+/* ==================================
+   KITTY Y SPIDER-MAN - DECORACIÓN LOGIN
+================================== */
+
+.tarjeta-login::before {
+    content: "";
+
+    position: absolute;
+
+    width: 230px;
+    height: 310px;
+
+    top: -165px;
+    right: -165px;
+
+    background-image: url("../assets/imagenes/kitty-spiderman.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    pointer-events: none;
+    z-index: 3;
+    animation: bajarTelarana 2.8s ease-out both;
+}
+
+/* Ajuste para celulares */
+
+@media (max-width: 600px) {
+    .tarjeta-login::before {
+        width: 125px;
+        height: 170px;
+
+        top: -100px;
+        right: -15px;
+    }
+}
+
+/* ==================================
+   ANIMACIÓN: BAJANDO DE LA TELARAÑA
+================================== */
+
+@keyframes bajarTelarana {
+
+    0% {
+        opacity: 0;
+        transform: translateY(-500px);
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    70% {
+        transform: translateY(20px);
+    }
+
+    85% {
+        transform: translateY(-12px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Accesibilidad: reducir movimiento */
+
+@media (prefers-reduced-motion: reduce) {
+    .tarjeta-login::before {
+        animation: none;
+    }
+}

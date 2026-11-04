@@ -36,6 +36,7 @@ const formulario = document.getElementById("formCarta");
 const titulo = document.getElementById("tituloCarta");
 const contenido = document.getElementById("contenidoCarta");
 const fecha = document.getElementById("fechaCarta");
+const musica = document.getElementById("musicaCarta");
 
 const botonBorrador = document.getElementById("guardarBorrador");
 const botonPublicar = document.getElementById("publicarCarta");
@@ -96,6 +97,7 @@ async function guardarCarta(publicar) {
     const tituloTexto = titulo.value.trim();
     const contenidoTexto = contenido.value.trim();
     const fechaTexto = fecha.value;
+    const musicaTexto = musica.value.trim();
 
     if (!tituloTexto || !contenidoTexto) {
         mensaje.textContent =
@@ -137,11 +139,12 @@ async function guardarCarta(publicar) {
 try {
 
     const datosCarta = {
-        titulo: tituloTexto,
-        contenido: contenidoTexto,
-        publicada: publicar,
-        fechaPublicacion:
-            Timestamp.fromDate(fechaSeleccionada)
+    titulo: tituloTexto,
+    contenido: contenidoTexto,
+    musica: musicaTexto,
+    publicada: publicar,
+    fechaPublicacion:
+    Timestamp.fromDate(fechaSeleccionada)
     };
 
     if (cartaEnEdicion !== null) {
@@ -212,6 +215,7 @@ function editarCarta(carta) {
     // Recuperar título y contenido
     titulo.value = carta.titulo || "";
     contenido.value = carta.contenido || "";
+    musica.value = carta.musica || "";
 
     // Recuperar fecha para datetime-local
     if (carta.fechaPublicacion?.toDate) {

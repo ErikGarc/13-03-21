@@ -586,3 +586,98 @@ body.pagina-buzon {
     overflow-y: auto !important;
     overflow-x: hidden;
 }
+
+/* ==================================
+   TEXTO ROMÁNTICO CENTRADO
+================================== */
+
+#contenidoModalCarta {
+    text-align: center;
+    line-height: 1.9;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
+}
+
+/* ==================================
+   REPRODUCTOR ROMÁNTICO
+================================== */
+
+.reproductor-romantico {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin: 25px auto;
+    padding: 15px;
+
+    max-width: 450px;
+    box-sizing: border-box;
+
+    background: #fff0f6;
+    border: 1px solid #f6c7da;
+    border-radius: 18px;
+
+    box-shadow: 0 5px 20px
+        rgba(202, 101, 144, 0.1);
+}
+
+/* Mantener oculto si no hay canción */
+.reproductor-romantico[hidden] {
+    display: none;
+}
+
+.informacion-musica {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.icono-musica {
+    font-size: 25px;
+}
+
+.informacion-musica strong {
+    color: #b65d82;
+    font-size: 14px;
+}
+
+#estadoMusica {
+    color: #b78499;
+    font-size: 12px;
+    margin: 5px 0 0;
+}
+
+.boton-musica {
+    border: none;
+    border-radius: 20px;
+    padding: 10px 15px;
+
+    background: #e979a3;
+    color: white;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.boton-musica:hover {
+    background: #d85d8c;
+}
+
+@media (max-width: 480px) {
+    .reproductor-romantico {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .informacion-musica {
+        justify-content: center;
+    }
+}
