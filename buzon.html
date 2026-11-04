@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Mi buzón de amor | 13-03-21</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/buzon.css">
+</head>
+
+<body class="pagina-buzon">
+
+    <main class="contenedor-buzon">
+
+        <header class="encabezado-buzon">
+            <p>UN RINCONCITO SOLO PARA NOSOTROS ♡</p>
+            <h1>13-03-21 💌</h1>
+            <h2>Mi buzón de amor</h2>
+        </header>
+
+        <p id="estadoBuzon" role="status">
+            Comprobando tu acceso...
+        </p>
+
+        <section id="seccionCartas" hidden>
+            <h3>Cartitas para ti ♡</h3>
+            <div id="listaCartas"></div>
+        </section>
+
+        <button id="administrarCartas" hidden>
+            ✍️ Administrar mis cartas
+        </button>
+        <button id="cerrarSesion" hidden>
+            Cerrar sesión
+        </button>
+
+    </main>
+    <!-- =====================================
+     CARTA GRANDE - 13-03-21
+===================================== -->
+
+<div id="modalCarta" class="modal-carta" hidden>
+
+    <div class="fondo-modal"></div>
+
+    <article
+        class="papel-carta"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="tituloModalCarta"
+        tabindex="-1"
+    >
+
+        <button
+            type="button"
+            id="cerrarModalCarta"
+            class="cerrar-modal-carta"
+            aria-label="Cerrar carta"
+        >
+            ✕
+        </button>
+
+        <p class="encabezado-papel">
+            13-03-21 ♡
+        </p>
+
+        <h2 id="tituloModalCarta"></h2>
+
+        <p class="subtitulo-papel">
+            Una cartita hecha con amor 💗
+        </p>
+
+        <div class="separador-papel">
+            ♡ ♡ ♡
+        </div>
+
+        <div
+            id="contenidoModalCarta"
+            class="texto-papel"
+        ></div>
+
+        <p class="firma-papel">
+            Con todo mi amor 💌
+        </p>
+
+    </article>
+
+</div>
+    <script type="module" src="js/buzon.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Entrar a mi buzón | 13-03-21</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body class="pagina-login">
+
+    <div class="corazones-login" aria-hidden="true">
+        <span>♡</span>
+        <span>♥</span>
+        <span>✧</span>
+        <span>♡</span>
+        <span>♥</span>
+    </div>
+
+    <main class="tarjeta-login">
+
+        <p class="subtitulo-login">
+            UN LUGAR SOLO PARA TI ♡
+        </p>
+
+        <h1>13-03-21</h1>
+
+        <div class="icono-login">💌</div>
+
+        <h2>Bienvenida a nuestro buzón</h2>
+
+        <p class="descripcion-login">
+            Cada carta guarda un pedacito
+            de mi corazón.
+        </p>
+
+        <form id="formLogin">
+
+            <label for="correo">
+                Correo electrónico
+            </label>
+
+            <input
+                type="email"
+                id="correo"
+                placeholder="Tu correo electrónico"
+                autocomplete="email"
+                required
+            >
+
+            <label for="contrasena">
+                Contraseña
+            </label>
+
+            <input
+                type="password"
+                id="contrasena"
+                placeholder="Tu contraseña"
+                autocomplete="current-password"
+                required
+            >
+
+            <button type="submit">
+                Abrir mi buzón ♡
+            </button>
+
+        </form>
+
+        <p id="mensajeLogin"
+           class="mensaje-login"
+           role="status"
+           aria-live="polite"></p>
+
+        <p class="firma-login">
+            Hecho con amor, solo para ti. ♡
+        </p>
+
+    </main>
+    <script type="module" src="js/login.js"></script>
+   
+
+</body>
+</html>

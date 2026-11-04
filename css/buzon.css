@@ -1,0 +1,588 @@
+
+/* ==================================
+   BUZÓN DE AMOR - 13-03-21
+================================== */
+
+.pagina-buzon {
+    min-height: 100vh;
+    margin: 0;
+    padding: 30px 15px;
+    box-sizing: border-box;
+
+    background: linear-gradient(
+        135deg,
+        #ffe5ef,
+        #ffd0e2,
+        #fff0f6
+    );
+
+    font-family: 'Segoe UI', sans-serif;
+    color: #a65e7d;
+}
+
+.contenedor-buzon {
+    max-width: 750px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.encabezado-buzon p {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #c47c9a;
+}
+
+.encabezado-buzon h1 {
+    font-size: 42px;
+    color: #c7658c;
+    margin: 10px 0;
+}
+
+.encabezado-buzon h2 {
+    font-size: 24px;
+    margin-bottom: 35px;
+}
+
+#estadoBuzon {
+    color: #a65e7d;
+    margin: 25px 0;
+}
+
+#listaCartas {
+    display: grid;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.tarjeta-carta {
+    background: rgba(255,255,255,0.92);
+    border: 1px solid #fff;
+    border-radius: 20px;
+    padding: 25px;
+
+    box-shadow: 0 8px 25px
+        rgba(202,101,144,0.13);
+
+    text-align: left;
+}
+
+.tarjeta-carta h4 {
+    color: #c7658c;
+    font-size: 20px;
+    margin: 0 0 12px;
+}
+
+.tarjeta-carta p {
+    color: #855d70;
+    line-height: 1.8;
+    white-space: pre-wrap;
+}
+
+#cerrarSesion {
+    margin-top: 30px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: #e985aa;
+    color: white;
+    cursor: pointer;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* =====================================
+   SOBRES ROMÁNTICOS - 13-03-21
+===================================== */
+
+.boton-abrir-carta {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 12px 22px;
+
+    background: #f8c8dc;
+    color: #934b6d;
+
+    border: none;
+    border-radius: 20px;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: background 0.2s ease,
+                transform 0.2s ease;
+}
+
+.boton-abrir-carta:hover {
+    background: #f3a9c7;
+    transform: translateY(-2px);
+}
+
+.contenido-carta {
+    margin-top: 20px;
+    padding: 20px;
+
+    background: #fff7fa;
+    border: 1px solid #f5c7d9;
+    border-radius: 15px;
+
+    line-height: 1.8;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+/* Asegurar que el contenido cerrado no se vea */
+.contenido-carta[hidden] {
+    display: none !important;
+}
+
+.tarjeta-carta.carta-abierta {
+    border-color: #e9a2bf;
+}
+
+/* =========================================
+   SOBRES ANIMADOS - 13-03-21
+========================================= */
+
+.boton-abrir-carta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    padding: 18px 10px;
+
+    background: transparent;
+    border: none;
+    color: #a94f78;
+
+    cursor: pointer;
+}
+
+.boton-abrir-carta:hover {
+    background: transparent;
+}
+
+.sobre-romantico {
+    position: relative;
+    display: block;
+
+    width: 150px;
+    height: 105px;
+
+    perspective: 600px;
+}
+
+.cuerpo-sobre {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 150px;
+    height: 90px;
+
+    background: #f6b7d0;
+    border-radius: 5px;
+
+    box-shadow: 0 6px 15px rgba(190, 80, 120, 0.15);
+}
+
+.cuerpo-sobre::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: #ffd6e6;
+    clip-path: polygon(0 0, 50% 55%, 100% 0);
+}
+
+.solapa-sobre {
+    position: absolute;
+    top: 15px;
+    left: 0;
+
+    width: 150px;
+    height: 65px;
+
+    background: #f3a5c4;
+
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+
+    transform-origin: top center;
+    transition: transform 0.65s ease;
+
+    z-index: 2;
+}
+
+.corazon-sobre {
+    position: absolute;
+    top: 48px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: #d96392;
+    font-size: 30px;
+    z-index: 3;
+}
+
+.texto-sobre {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* ANIMACIÓN AL ABRIR */
+
+.carta-abierta .solapa-sobre {
+    transform: rotateX(180deg);
+}
+
+.carta-abierta .corazon-sobre {
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .solapa-sobre {
+        transition: none;
+    }
+}
+
+/* =====================================
+   PAPEL QUE SALE DEL SOBRE
+===================================== */
+
+.sobre-romantico {
+    overflow: visible;
+    transform-style: preserve-3d;
+}
+
+.papel-animado {
+    position: absolute;
+    left: 20px;
+    bottom: 12px;
+
+    width: 110px;
+    height: 75px;
+
+    background: #fffafc;
+    border: 1px solid #f2bfd3;
+    border-radius: 5px;
+
+    box-shadow: 0 3px 10px rgba(190, 80, 120, 0.12);
+
+    z-index: 1;
+
+    transform: translateY(0);
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.papel-animado::before {
+    content: "♡ " attr(data-fecha) " ♡";
+    display: block;
+    margin-top: 12px;
+
+    color: #d16b97;
+    font-size: 10px;
+    text-align: center;
+}
+
+/* Al abrir, se levanta la solapa */
+
+.sobre-romantico.animando .solapa-sobre {
+    animation: levantarSolapa 0.6s ease forwards;
+}
+
+/* Después, sale el papel */
+
+.sobre-romantico.animando .papel-animado {
+    animation: sacarPapel 0.9s ease 0.45s forwards;
+}
+
+.sobre-romantico.animando .corazon-sobre {
+    opacity: 0;
+}
+
+@keyframes levantarSolapa {
+    from {
+        transform: rotateX(0deg);
+    }
+
+    to {
+        transform: rotateX(180deg);
+    }
+}
+
+@keyframes sacarPapel {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-85px);
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sobre-romantico.animando .solapa-sobre,
+    .sobre-romantico.animando .papel-animado {
+        animation-duration: 0.01ms;
+        animation-delay: 0ms;
+    }
+}
+
+/* =====================================
+   CARTA GRANDE - 13-03-21
+===================================== */
+
+.modal-carta {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.modal-carta[hidden] {
+    display: none !important;
+}
+
+.fondo-modal {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(83, 35, 59, 0.65);
+    backdrop-filter: blur(5px);
+}
+
+.papel-carta {
+    position: relative;
+    z-index: 1;
+
+    width: min(100%, 600px);
+    max-height: 85vh;
+    max-height: 85dvh;
+    overflow-y: auto;
+    box-sizing: border-box;
+
+    padding: 45px 35px;
+
+    background: #fffafc;
+    border: 2px solid #f5c7d9;
+    border-radius: 20px;
+
+    box-shadow: 0 20px 60px rgba(83, 35, 59, 0.25);
+
+    text-align: center;
+
+    animation: aparecerPapel 0.4s ease;
+}
+
+/* TRANSICIÓN DE PAPEL A CARTA GRANDE */
+
+@keyframes aparecerPapel {
+    0% {
+        opacity: 0;
+        transform: translateY(70px) scale(0.35);
+    }
+
+    55% {
+        opacity: 1;
+        transform: translateY(-10px) scale(1.03);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.cerrar-modal-carta {
+    position: sticky;
+    top: 0;
+    float: right;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f8c8dc;
+    color: #934b6d;
+
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.encabezado-papel {
+    color: #c7658c;
+    letter-spacing: 3px;
+    font-size: 13px;
+}
+
+#tituloModalCarta {
+    color: #b94d7c;
+    margin-top: 20px;
+}
+
+.subtitulo-papel {
+    color: #a65e7d;
+    font-size: 14px;
+}
+
+.separador-papel {
+    margin: 25px 0;
+    color: #d96895;
+}
+
+.texto-papel {
+    color: #855d70;
+    font-size: 16px;
+    line-height: 1.9;
+
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    text-align: left;
+}
+
+.firma-papel {
+    margin-top: 35px;
+    text-align: right;
+    color: #c7658c;
+    font-style: italic;
+}
+
+@media (max-width: 480px) {
+    .papel-carta {
+        padding: 30px 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .papel-carta {
+       /* La animación ahora la controla JavaScript */
+        animation: none;
+    }
+}
+
+/* Transición continua del papel */
+
+.papel-carta {
+    transform-origin: center center;
+    will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .papel-carta {
+        animation: none !important;
+    }
+}
+
+
+/* =====================================
+   ANIMACIÓN AL CERRAR LA CARTA
+===================================== */
+
+.papel-carta.cerrando {
+    animation: cerrarPapel 0.35s ease-in forwards;
+}
+
+@keyframes cerrarPapel {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.92) translateY(20px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .papel-carta.cerrando {
+        animation: none;
+    }
+}
+
+/* =====================================
+   FECHA VISIBLE DE CADA CARTA
+===================================== */
+
+.fecha-visible-carta {
+    margin: 5px 0 15px;
+    color: #b96a91;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.4px;
+}
+
+/* =====================================
+   CONTADOR DE CARTITAS DE AMOR
+===================================== */
+
+#estadoBuzon {
+    text-align: center;
+    color: #b94d7c;
+    font-size: 17px;
+    font-weight: 600;
+    margin: 18px auto 25px;
+    line-height: 1.6;
+}
+
+/* =====================================
+   ESTADO DE LECTURA DE CARTAS
+===================================== */
+
+.etiqueta-lectura {
+    display: table;
+    margin: 0 auto 12px;
+    padding: 5px 13px;
+    border-radius: 20px;
+    background: #ffe0ed;
+    color: #bd4d7c;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.etiqueta-lectura.leida {
+    background: #f2e9ee;
+    color: #967d8b;
+}
+
+
+/* ==========================================
+   CORRECCIÓN DE SCROLL EN CELULARES
+   ========================================== */
+
+html:has(body.pagina-buzon) {
+    height: auto !important;
+    min-height: 100%;
+    overflow-y: auto !important;
+}
+
+body.pagina-buzon {
+    height: auto !important;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-y: auto !important;
+    overflow-x: hidden;
+}

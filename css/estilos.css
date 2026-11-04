@@ -1,0 +1,749 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, serif;
+    min-height: 100vh;
+    overflow: hidden;
+
+    background: linear-gradient(
+        135deg,
+        #fff0f4,
+        #f9dce6,
+        #fff7f0
+    );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* TARJETA PRINCIPAL */
+
+.presentacion {
+    width: 90%;
+    max-width: 700px;
+    min-height: 450px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.65);
+
+    border: 1px solid #ffffff;
+    border-radius: 25px;
+
+    padding: 40px;
+
+    box-shadow: 0 15px 45px rgba(190, 120, 145, 0.15);
+
+    position: relative;
+    z-index: 2;
+
+    animation: aparecerTarjeta 1.5s ease;
+}
+
+/* CONTENIDO */
+
+.contenido {
+    animation: aparecerContenido 2s ease;
+}
+
+.subtitulo {
+    color: #b77a91;
+    letter-spacing: 5px;
+    font-size: 12px;
+    margin-bottom: 25px;
+}
+
+h1 {
+    color: #bd718f;
+    font-size: 65px;
+    letter-spacing: 8px;
+    font-weight: normal;
+}
+
+.mensaje {
+    color: #886875;
+    font-size: 20px;
+    line-height: 1.7;
+    margin-top: 25px;
+}
+
+.decoracion {
+    color: #d98ba7;
+    font-size: 40px;
+    margin: 20px;
+
+    animation: latido 2s infinite ease-in-out;
+}
+
+.firma {
+    color: #b77a91;
+    font-style: italic;
+    font-size: 16px;
+}
+
+/* CORAZONES Y DESTELLOS */
+
+.corazones {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.corazon-flotante {
+    position: absolute;
+    bottom: -50px;
+
+    opacity: 0;
+
+    animation: flotar linear infinite;
+    will-change: transform, opacity;
+}
+
+/* MOVIMIENTO DE LOS ELEMENTOS */
+
+@keyframes flotar {
+
+    0% {
+        transform: translateY(0) rotate(0deg) scale(0.7);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: var(--opacidad);
+    }
+
+    50% {
+        transform: translateY(-55vh) rotate(25deg) scale(1);
+    }
+
+    85% {
+        opacity: var(--opacidad);
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(-25deg) scale(0.8);
+        opacity: 0;
+    }
+}
+
+/* ADAPTACION A CELULARES */
+
+@media (max-width: 600px) {
+
+    .presentacion {
+        min-height: 380px;
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 42px;
+        letter-spacing: 5px;
+    }
+
+    .mensaje {
+        font-size: 17px;
+    }
+
+    .subtitulo {
+        font-size: 10px;
+        letter-spacing: 3px;
+    }
+
+    .firma {
+        font-size: 14px;
+    }
+}
+
+/* RESPETAR PREFERENCIA DE MENOS MOVIMIENTO */
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+/* ESCENA DE PRESENTACION */
+
+.escena {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.escenario {
+    height: 150px;
+    max-width: 430px;
+    margin: 15px auto;
+    position: relative;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+/* KITTY CAMINANDO */
+
+.gatita {
+    position: absolute;
+
+    left: 0;
+    bottom: 10px;
+
+    width: 115px;
+
+    z-index: 3;
+
+    transform: translateX(-130px);
+
+    animation: desplazamientoKitty 5s linear forwards;
+}
+
+/* IMAGEN DEL PERSONAJE */
+
+.imagen-kitty {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    object-fit: contain;
+
+    animation: saltitoKitty 0.35s ease-in-out infinite alternate;
+}
+
+/* DESPLAZAMIENTO HACIA EL BUZON */
+
+@keyframes desplazamientoKitty {
+
+    0% {
+        transform: translateX(-130px);
+    }
+
+    100% {
+        transform: translateX(170px);
+    }
+}
+
+/* PEQUEÑO MOVIMIENTO AL CAMINAR */
+
+@keyframes saltitoKitty {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-5px);
+    }
+}
+
+/* DETENER EL MOVIMIENTO */
+
+.gatita.detenida {
+    animation: none;
+    transform: translateX(170px);
+}
+
+.gatita.detenida .imagen-kitty {
+    animation: none;
+}
+
+/* ADAPTACION A CELULARES */
+
+@media (max-width: 600px) {
+
+    .gatita {
+        width: 85px;
+    }
+
+    @keyframes desplazamientoKitty {
+        0% {
+            transform: translateX(-100px);
+        }
+
+        100% {
+            transform: translateX(110px);
+        }
+    }
+
+    .gatita.detenida {
+        transform: translateX(110px);
+    }
+}
+
+/* BUZON */
+
+.buzon {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+
+    font-size: 75px;
+
+    animation: aparecerBuzon 1.5s ease;
+}
+
+/* DIALOGO */
+
+.dialogo {
+    max-width: 420px;
+    margin: 0 auto;
+
+    padding: 18px 22px;
+
+    background: #fff7fa;
+    border: 1px solid #f4cad9;
+    border-radius: 20px;
+
+    color: #886875;
+    font-size: 15px;
+    line-height: 1.7;
+
+    opacity: 0;
+    transform: translateY(12px);
+
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.dialogo p + p {
+    margin-top: 8px;
+}
+
+.dialogo.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* BOTON */
+
+.boton-continuar {
+    display: block;
+    margin: 20px auto 0;
+
+    padding: 12px 28px;
+
+    border: none;
+    border-radius: 30px;
+
+    background: #d98ba7;
+    color: white;
+
+    font-family: Georgia, serif;
+    font-size: 15px;
+
+    cursor: pointer;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: background 0.3s ease,
+                transform 0.3s ease,
+                opacity 1s ease;
+}
+
+.boton-continuar.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.boton-continuar:hover {
+    background: #bd718f;
+    transform: scale(1.05);
+}
+
+/* ANIMACIONES */
+
+@keyframes caminarGatita {
+    0% {
+        transform: translateX(-120px);
+    }
+
+    20% {
+        transform: translateX(-70px);
+    }
+
+    40% {
+        transform: translateX(-35px);
+    }
+
+    65%, 100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes aparecerBuzon {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* CELULARES */
+
+@media (max-width: 600px) {
+
+    .presentacion {
+        padding: 22px;
+    }
+
+    .escenario {
+        height: 125px;
+    }
+
+    .gatita {
+        font-size: 55px;
+    }
+
+    .buzon {
+        font-size: 60px;
+    }
+
+    .dialogo {
+        font-size: 13px;
+        padding: 14px;
+    }
+
+    .boton-continuar {
+        font-size: 14px;
+    }
+}
+
+/* ==================================
+   BUZÓN KAWAII
+================================== */
+
+.buzon {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    width: 155px;
+    z-index: 2;
+}
+
+.imagen-buzon {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Tamaño para celulares */
+@media (max-width: 600px) {
+    .buzon {
+        width: 115px;
+        right: 0;
+    }
+}
+
+/* ==================================
+   CARTA VOLADORA
+================================== */
+
+.carta-voladora {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 38px;
+    height: 28px;
+
+    z-index: 5;
+    opacity: 0;
+    pointer-events: none;
+    transform-origin: center;
+}
+
+.sobre-carta {
+    width: 100%;
+    height: 100%;
+
+    background: #fffafa;
+    border: 2px solid #d98ba7;
+    border-radius: 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 3px 10px rgba(190, 100, 140, 0.2);
+}
+
+.sobre-carta span {
+    color: #e77fa4;
+    font-size: 17px;
+}
+
+/* Movimiento hacia la ranura */
+.carta-voladora.entregando {
+    animation: entregaKawaii 1.5s ease-in-out forwards;
+}
+
+@keyframes entregaKawaii {
+    0% {
+        opacity: 1;
+        transform:
+            translate(var(--inicio-x), var(--inicio-y))
+            rotate(-12deg) scale(1);
+    }
+
+    40% {
+        opacity: 1;
+        transform:
+            translate(var(--medio-x), var(--medio-y))
+            rotate(8deg) scale(1);
+    }
+
+    80% {
+        opacity: 1;
+        transform:
+            translate(var(--final-x), var(--final-y))
+            rotate(0deg) scale(0.6);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(var(--final-x), var(--final-y))
+            rotate(0deg) scale(0.1);
+    }
+}
+
+/* ==================================
+   MAGIA DEL BUZÓN KAWAII
+================================== */
+
+.buzon {
+    transform-origin: center bottom;
+}
+
+/* Sacudida suave al recibir la carta */
+
+.buzon.recibiendo-amor {
+    animation: sacudidaAmor 0.7s ease-in-out;
+}
+
+@keyframes sacudidaAmor {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-5deg);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+
+    75% {
+        transform: rotate(-2deg);
+    }
+}
+
+/* Resplandor rosa */
+
+.buzon.brillo-amor .imagen-buzon {
+    filter: drop-shadow(0 0 18px #ff8fba)
+            drop-shadow(0 0 28px #ffc4dd);
+
+    transition: filter 0.5s ease;
+}
+
+/* Partículas románticas */
+
+.magia-buzon {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.magia-buzon span {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+
+    font-size: 25px;
+    color: #e979a3;
+    opacity: 0;
+    text-shadow: 0 0 8px #ffd5e6;
+}
+
+.magia-buzon.activa span {
+    animation: corazonesMagicos 1.8s ease-out forwards;
+}
+
+/* Direcciones de las partículas */
+
+.magia-buzon span:nth-child(1) {
+    --x: -90px;
+    --y: -100px;
+}
+
+.magia-buzon span:nth-child(2) {
+    --x: 80px;
+    --y: -130px;
+}
+
+.magia-buzon span:nth-child(3) {
+    --x: -45px;
+    --y: -150px;
+}
+
+.magia-buzon span:nth-child(4) {
+    --x: 100px;
+    --y: -50px;
+}
+
+.magia-buzon span:nth-child(5) {
+    --x: 0px;
+    --y: -165px;
+}
+
+.magia-buzon span:nth-child(6) {
+    --x: -110px;
+    --y: -45px;
+}
+
+.magia-buzon span:nth-child(7) {
+    --x: 45px;
+    --y: -115px;
+}
+
+.magia-buzon span:nth-child(8) {
+    --x: -65px;
+    --y: -65px;
+}
+
+/* Explosión de corazones */
+
+@keyframes corazonesMagicos {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0) scale(0.3);
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(var(--x), var(--y))
+            rotate(25deg)
+            scale(1.3);
+    }
+}
+
+/* ==================================
+   MENSAJE DE BIENVENIDA
+================================== */
+
+.dialogo {
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(15px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease,
+        visibility 0.8s;
+}
+
+.dialogo.visible {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+.dialogo p {
+    margin: 8px 0;
+    line-height: 1.6;
+}
+
+/* BOTÓN ROMÁNTICO */
+
+.boton-continuar {
+    display: block;
+    margin: 15px auto;
+
+    padding: 13px 28px;
+
+    border: none;
+    border-radius: 30px;
+
+    background: linear-gradient(
+        135deg,
+        #f5a6c4,
+        #e979a3
+    );
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 18px rgba(233, 121, 163, 0.3);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(15px);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease,
+        visibility 0.7s,
+        box-shadow 0.3s ease;
+}
+
+.boton-continuar.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.boton-continuar:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 9px 22px rgba(233, 121, 163, 0.45);
+}
+
+@media (max-width: 600px) {
+    .dialogo {
+        font-size: 14px;
+    }
+
+    .boton-continuar {
+        font-size: 14px;
+        padding: 12px 20px;
+    }
+}

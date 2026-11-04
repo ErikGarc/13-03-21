@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Mis cartitas | 13-03-21</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body class="pagina-admin">
+
+    <main class="contenedor-admin">
+
+        <header class="encabezado-admin">
+            <p>NUESTRO RINCONCITO SECRETO ♡</p>
+            <h1>Mis cartitas 💌</h1>
+            <p>Un pedacito de mi corazón en cada palabra.</p>
+        </header>
+
+        <section class="panel-admin" hidden>
+
+            <h2>Escribir una nueva carta ♡</h2>
+
+            <form id="formCarta">
+
+                <label for="tituloCarta">
+                    Título de la carta
+                </label>
+
+                <input
+                    type="text"
+                    id="tituloCarta"
+                    placeholder="Para mi persona favorita..."
+                    required
+                >
+
+                <label for="contenidoCarta">
+                    Escribe tu carta ♡
+                </label>
+
+                <textarea
+                    id="contenidoCarta"
+                    rows="9"
+                    placeholder="Mi amor, hoy quiero decirte..."
+                    required
+                ></textarea>
+
+                <label for="fechaCarta">
+                    Fecha de publicación
+                </label>
+
+                <input
+                    type="datetime-local"
+                    id="fechaCarta"
+                    required
+                >
+
+                <div class="acciones-admin">
+                    <button type="button"
+                            id="guardarBorrador">
+                        💗 Guardar borrador
+                    </button>
+
+                    <button type="button"
+                            id="publicarCarta">
+                        💌 Publicar carta
+                    </button>
+                    <button
+                     type="button"
+                    id="cancelarEdicion"
+                        hidden
+                        >
+    ✖ Cancelar edición
+</button>
+                </div>
+
+            </form>
+
+            <p id="mensajeAdmin" role="status">
+                Panel de administración en preparación. ♡
+            </p>
+            
+<section class="seccion-listado">
+    <h2>Mis cartas guardadas 💌</h2>
+
+    <p id="estadoListado" role="status">
+        Cargando tus cartas...
+    </p>
+
+    <div id="listaAdminCartas"></div>
+</section>
+
+        </section>
+
+        <a href="buzon.html" class="volver-buzon" hidden>
+            ← Volver a mi buzón
+        </a>
+
+       </main>
+
+    <script type="module" src="js/admin.js"></script>
+
+</body>
+</html>
