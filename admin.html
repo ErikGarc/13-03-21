@@ -28,6 +28,43 @@
 
             <form id="formCarta">
 
+                <!-- PLANTILLA DE LA CARTA -->
+
+                <label for="plantillaCarta">
+                     🎨 Elige el diseño de tu carta
+                </label>
+
+            <select id="plantillaCarta" name="plantillaCarta">
+
+                 <option value="clasica">
+                  🌸 Carta clásica
+                </option>
+
+                 <option value="corazones">
+                  💗 Carta de corazones
+                </option>
+
+                <option value="recuerdos">
+                     📸 Nuestros recuerdos
+               </option>
+
+                <option value="estrellas">
+                    ✨ Bajo las estrellas
+                </option>
+
+                <option value="vintage">
+                  🌹 Amor vintage
+                </option>
+
+                <option value="minimalista">
+                  🤍 Amor minimalista
+                 </option>
+
+                </select>
+
+                <small class="ayuda-plantilla">
+                 💌 Cada carta podrá tener su propio diseño romántico.
+                    </small>
                 <label for="tituloCarta">
                     Título de la carta
                 </label>
@@ -68,6 +105,158 @@
     💗 Escribe la ruta de la canción que
     acompañará esta carta.
 </small>
+<!-- INFORMACIÓN DE LA CANCIÓN -->
+
+<label for="tituloCancion">
+    🎵 Nombre de la canción
+</label>
+
+<input
+    type="text"
+    id="tituloCancion"
+    placeholder="Ej. Nuestra canción especial"
+>
+
+<label for="artistaCancion">
+    🎤 Nombre del artista
+</label>
+
+<input
+    type="text"
+    id="artistaCancion"
+    placeholder="Ej. Nombre del cantante"
+>
+
+<small class="ayuda-musica">
+    💗 Estos datos aparecerán en el reproductor
+    cuando se abra la carta.
+</small>
+
+
+<!-- =====================================
+     ETAPA 15 - VISTA PREVIA DE CARTAS
+===================================== -->
+
+<div class="seccion-vista-previa">
+
+    <h3>💌 Así se verá tu cartita</h3>
+
+    <p class="descripcion-vista-previa">
+        Mira cómo quedará tu carta antes de publicarla.
+    </p>
+
+    <button
+        type="button"
+        id="botonVistaPrevia"
+        class="boton-vista-previa"
+    >
+        👀 Vista previa de mi carta
+    </button>
+
+    <div id="contenedorVistaPrevia" hidden>
+
+        <article id="papelVistaPrevia" class="papel-carta plantilla-clasica">
+
+            <div class="decoracion-papel">
+                ♡ ✿ ♡
+            </div>
+
+            <h3 id="tituloVistaPrevia">
+                Para mi persona favorita ♡
+            </h3>
+
+            <div id="contenidoVistaPrevia">
+                Aquí aparecerán las palabras de tu corazón...
+            </div>
+            
+<!-- GALERÍA DE RECUERDOS TIPO POLAROID -->
+<div id="galeriaPolaroid" class="galeria-polaroid" hidden>
+
+    <div class="foto-polaroid polaroid-1">
+        <div class="imagen-polaroid">
+            <span>📷</span>
+            <p>Nuestro primer recuerdo</p>
+        </div>
+        <span class="texto-polaroid">Un momento especial ♡</span>
+    </div>
+
+    <div class="foto-polaroid polaroid-2">
+        <div class="imagen-polaroid">
+            <span>📷</span>
+            <p>Un día inolvidable</p>
+        </div>
+        <span class="texto-polaroid">Tú y yo 💗</span>
+    </div>
+
+    <div class="foto-polaroid polaroid-3">
+        <div class="imagen-polaroid">
+            <span>📷</span>
+            <p>Mi lugar favorito</p>
+        </div>
+        <span class="texto-polaroid">Contigo siempre ♡</span>
+    </div>
+
+</div>
+
+
+            <div class="firma-vista-previa">
+                Con todo mi amor ♡
+            </div>
+
+        </article>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================
+     FOTOGRAFÍAS DE NUESTRA CARTA
+===================================== -->
+
+<div class="seccion-fotos-carta">
+
+    <h3>📸 Nuestros recuerdos</h3>
+
+    <p>
+        Elige hasta tres fotografías para acompañar
+        tu carta con recuerdos especiales. ♡
+    </p>
+
+    <label for="fotoCarta1">
+        💗 Primera fotografía
+    </label>
+    <input
+        type="file"
+        id="fotoCarta1"
+        accept="image/jpeg,image/png,image/webp"
+    >
+
+    <label for="fotoCarta2">
+        🌸 Segunda fotografía
+    </label>
+    <input
+        type="file"
+        id="fotoCarta2"
+        accept="image/jpeg,image/png,image/webp"
+    >
+
+    <label for="fotoCarta3">
+        💌 Tercera fotografía
+    </label>
+    <input
+        type="file"
+        id="fotoCarta3"
+        accept="image/jpeg,image/png,image/webp"
+    >
+
+    <small class="ayuda-fotos">
+        Las fotografías aparecerán en la plantilla
+        "Nuestros recuerdos", con estilo Polaroid.
+    </small>
+
+</div>
+
 
 <label for="fechaCarta">
     Fecha de publicación

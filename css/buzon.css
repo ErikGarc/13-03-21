@@ -681,3 +681,510 @@ body.pagina-buzon {
         justify-content: center;
     }
 }
+/* ==========================================
+   FOTOGRAFÍAS POLAROID - 13-03-21
+========================================== */
+
+.galeria-polaroid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+
+    margin: 30px auto;
+    max-width: 100%;
+}
+
+.galeria-polaroid:empty {
+    display: none;
+}
+
+/* Fotografía estilo Polaroid */
+
+.foto-polaroid {
+    width: 165px;
+    max-width: 100%;
+    margin: 0;
+    padding: 10px 10px 28px;
+
+    background: #ffffff;
+    border: 1px solid #f2e5e9;
+
+    box-shadow: 0 8px 22px rgba(83, 35, 59, 0.18);
+
+    transform: rotate(-5deg);
+    transition: transform 0.3s ease;
+    box-sizing: border-box;
+}
+
+.foto-polaroid:nth-child(2) {
+    transform: rotate(5deg);
+}
+
+.foto-polaroid:nth-child(3) {
+    transform: rotate(-3deg);
+}
+
+.foto-polaroid:hover {
+    transform: rotate(0deg) scale(1.04);
+}
+
+/* Imagen dentro de la Polaroid */
+
+.foto-polaroid img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+/* Adaptación para iPhone */
+
+@media (max-width: 480px) {
+
+    .galeria-polaroid {
+        gap: 15px;
+        margin: 25px auto;
+    }
+
+    .foto-polaroid {
+        width: min(42%, 155px);
+        padding: 8px 8px 22px;
+    }
+}
+/* ==========================================
+   POLAROID A LA DERECHA DEL TEXTO
+========================================== */
+
+.galeria-polaroid {
+    display: block;
+    float: right;
+
+    width: 180px;
+    max-width: 45%;
+
+    margin: 5px 0 20px 25px;
+}
+
+.foto-polaroid {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* En iPhone, mantener la foto visible
+   sin reducir demasiado el texto */
+
+@media (max-width: 480px) {
+
+    .galeria-polaroid {
+        width: 125px;
+        max-width: 42%;
+        margin: 5px 0 15px 15px;
+    }
+
+    .foto-polaroid {
+        width: 100%;
+    }
+}
+/* ==========================================
+   POLAROIDS SUPERPUESTAS - 13-03-21
+========================================== */
+
+.galeria-polaroid {
+    float: right;
+    display: block;
+    position: relative;
+
+    width: 200px;
+    max-width: 46%;
+    height: 290px;
+
+    margin: 10px 0 20px 25px;
+}
+
+/* Fotografías encimadas */
+
+.galeria-polaroid .foto-polaroid {
+    position: absolute;
+    width: 145px;
+    max-width: 85%;
+    margin: 0;
+
+    transition: transform 0.3s ease;
+}
+
+/* Primera fotografía */
+
+.galeria-polaroid .foto-polaroid:nth-child(1) {
+    top: 5px;
+    left: 0;
+    z-index: 1;
+    transform: rotate(-12deg);
+}
+
+/* Segunda fotografía */
+
+.galeria-polaroid .foto-polaroid:nth-child(2) {
+    top: 65px;
+    right: 0;
+    left: auto;
+    z-index: 2;
+    transform: rotate(10deg);
+}
+
+/* Tercera fotografía */
+
+.galeria-polaroid .foto-polaroid:nth-child(3) {
+    top: 130px;
+    left: 8px;
+    z-index: 3;
+    transform: rotate(-7deg);
+}
+
+/* Al pasar el cursor */
+
+.galeria-polaroid .foto-polaroid:hover {
+    z-index: 4;
+    transform: rotate(0deg) scale(1.08);
+}
+
+/* Una sola fotografía */
+
+.galeria-polaroid:has(.foto-polaroid:only-child) {
+    height: 185px;
+}
+
+/* Dos fotografías */
+
+.galeria-polaroid:has(.foto-polaroid:nth-child(2):last-child) {
+    height: 240px;
+}
+
+/* Adaptación para iPhone */
+
+@media (max-width: 480px) {
+    .galeria-polaroid {
+        width: 145px;
+        max-width: 44%;
+        height: 230px;
+        margin: 10px 0 15px 15px;
+    }
+
+    .galeria-polaroid .foto-polaroid {
+        width: 115px;
+        max-width: 90%;
+        padding: 6px 6px 18px;
+    }
+
+    .galeria-polaroid .foto-polaroid:nth-child(2) {
+        top: 50px;
+    }
+
+    .galeria-polaroid .foto-polaroid:nth-child(3) {
+        top: 100px;
+    }
+
+    .galeria-polaroid:has(.foto-polaroid:only-child) {
+        height: 150px;
+    }
+
+    .galeria-polaroid:has(.foto-polaroid:nth-child(2):last-child) {
+        height: 190px;
+    }
+}
+/* ==========================================
+   PAPEL ROMÁNTICO - NUESTROS RECUERDOS
+========================================== */
+
+.papel-carta:has(.galeria-polaroid .foto-polaroid) {
+    background:
+        radial-gradient(
+            circle at 10% 12%,
+            rgba(255, 190, 210, 0.25),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 85%,
+            rgba(244, 180, 200, 0.22),
+            transparent 30%
+        ),
+        #fffaf4;
+
+    border: 2px solid #e9b5c7;
+    outline: 5px solid rgba(255, 225, 235, 0.45);
+    outline-offset: -13px;
+
+    box-shadow:
+        0 20px 60px rgba(83, 35, 59, 0.25),
+        inset 0 0 35px rgba(235, 175, 190, 0.12);
+}
+
+/* Detalle decorativo superior */
+
+.papel-carta:has(.galeria-polaroid .foto-polaroid)::before {
+    content: "♡  ✿  ♡  ✿  ♡";
+    display: block;
+
+    margin: 0 auto 20px;
+
+    color: #d98cab;
+    font-size: 18px;
+    letter-spacing: 8px;
+}
+
+/* Título más romántico */
+
+.papel-carta:has(.galeria-polaroid .foto-polaroid)
+#tituloModalCarta {
+    color: #b75b80;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: clamp(23px, 5vw, 32px);
+}
+
+/* Texto de la carta */
+
+.papel-carta:has(.galeria-polaroid .foto-polaroid)
+#contenidoModalCarta {
+    color: #795466;
+    font-family: Georgia, serif;
+    line-height: 2;
+}
+
+/* Fotografías con apariencia de recuerdos */
+
+.papel-carta:has(.galeria-polaroid .foto-polaroid)
+.foto-polaroid {
+    border: 1px solid #f0e5df;
+    box-shadow:
+        3px 8px 18px rgba(91, 49, 62, 0.23);
+}
+/* ==========================================
+   MEJORAR LECTURA CON POLAROIDS
+========================================== */
+
+.papel-carta:has(.galeria-polaroid .foto-polaroid)
+#contenidoModalCarta {
+    text-align: left;
+    line-height: 1.9;
+    font-size: 16px;
+}
+
+/* Dar un poco más de espacio a la carta */
+
+.papel-carta:has(.galeria-polaroid .foto-polaroid) {
+    width: min(100%, 680px);
+}
+
+/* Ajustes para iPhone */
+
+@media (max-width: 480px) {
+    .papel-carta:has(.galeria-polaroid .foto-polaroid)
+    #contenidoModalCarta {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+}
+/* ==========================================
+   SCRAPBOOK ROMÁNTICO - 13-03-21
+========================================== */
+
+/* Papel con textura delicada */
+.papel-carta:has(.galeria-polaroid .foto-polaroid) {
+    background:
+        radial-gradient(
+            circle at 5% 8%,
+            rgba(244, 163, 190, 0.22),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 95% 95%,
+            rgba(244, 163, 190, 0.20),
+            transparent 28%
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 28px,
+            rgba(218, 151, 174, 0.045) 29px
+        ),
+        #fffaf4;
+
+    border: 3px double #e7a8bf;
+    border-radius: 12px;
+}
+
+/* Marco interior y detalles de encaje */
+.papel-carta:has(.galeria-polaroid .foto-polaroid)::before {
+    content: "✿  ♡  ❀  ♡  ✿";
+    display: block;
+
+    margin: 0 auto 22px;
+    padding-bottom: 14px;
+
+    color: #c9799b;
+    font-size: 20px;
+    letter-spacing: 7px;
+
+    border-bottom: 2px dotted #edc1d0;
+}
+
+/* Sello romántico en la esquina inferior */
+.papel-carta:has(.galeria-polaroid .foto-polaroid)::after {
+    content: "13 · 03 · 21  ♡";
+    display: block;
+    clear: both;
+
+    width: fit-content;
+    margin: 30px auto 0;
+    padding: 9px 18px;
+
+    color: #bd6a8d;
+    background: #fff0f5;
+
+    border: 1px dashed #d995b1;
+    border-radius: 30px;
+
+    font-family: Georgia, serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    transform: rotate(-3deg);
+}
+
+/* Título elegante */
+.papel-carta:has(.galeria-polaroid .foto-polaroid)
+#tituloModalCarta {
+    color: #b9547d;
+    font-family: Georgia, serif;
+    font-style: italic;
+
+    text-shadow: 1px 2px 3px
+        rgba(208, 132, 163, 0.18);
+}
+
+/* Detalles de las Polaroid */
+.papel-carta:has(.galeria-polaroid .foto-polaroid)
+.foto-polaroid {
+    background: #fffdf9;
+
+    box-shadow:
+        2px 5px 12px rgba(94, 53, 70, 0.18),
+        0 12px 24px rgba(94, 53, 70, 0.10);
+}
+/* ==========================================
+   SCRAPBOOK ROMÁNTICO PREMIUM - 13-03-21
+========================================== */
+
+.papel-carta:has(.galeria-polaroid .foto-polaroid) {
+    position: relative;
+    isolation: isolate;
+    width: min(100%, 680px);
+    padding: 65px 42px 55px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 222, 231, .65),
+            transparent 35%
+        ),
+        linear-gradient(
+            315deg,
+            rgba(255, 210, 224, .6),
+            transparent 35%
+        ),
+        #fff9ed;
+
+    border: 8px solid #f5d5df;
+    border-radius: 8px;
+
+    outline: 2px solid #c98ca5;
+    outline-offset: -17px;
+
+    box-shadow:
+        0 22px 65px rgba(83, 35, 59, .3),
+        inset 0 0 45px rgba(196, 114, 146, .13);
+}
+
+/* Ornamentación floral superior */
+
+.papel-carta:has(.galeria-polaroid .foto-polaroid)::before {
+    content: "❀  ✿  ♡  ✿  ❀";
+    display: block;
+
+    margin: -25px auto 25px;
+    padding: 15px 0;
+
+    font-size: 27px;
+    letter-spacing: 12px;
+    color: #b85d83;
+
+    border-top: 2px solid #dca2b8;
+    border-bottom: 2px solid #dca2b8;
+}
+
+/* Sello inferior */
+
+.papel-carta:has(.galeria-polaroid .foto-polaroid)::after {
+    content: "💌 13 · 03 · 21";
+    display: block;
+    clear: both;
+
+    width: fit-content;
+    margin: 45px auto 0;
+    padding: 15px 22px;
+
+    background: #f6d3df;
+    color: #9d456b;
+
+    border: 2px solid #c77d9d;
+    border-radius: 50%;
+
+    font-family: Georgia, serif;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+
+    transform: rotate(-8deg);
+    box-shadow: 3px 5px 10px rgba(110, 57, 79, .18);
+}
+
+/* Título con apariencia de carta antigua */
+
+.papel-carta:has(.galeria-polaroid .foto-polaroid)
+#tituloModalCarta {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: clamp(27px, 5vw, 38px);
+    color: #a8456c;
+    margin-bottom: 25px;
+}
+
+/* Fotografías con efecto papel */
+
+.papel-carta:has(.galeria-polaroid .foto-polaroid)
+.foto-polaroid {
+    background: #fffdf5;
+    border: 1px solid #e5d4cb;
+
+    box-shadow:
+        0 8px 20px rgba(69, 35, 47, .25),
+        0 2px 4px rgba(69, 35, 47, .12);
+}
+
+/* Adaptación para iPhone */
+
+@media (max-width: 480px) {
+    .papel-carta:has(.galeria-polaroid .foto-polaroid) {
+        padding: 55px 18px 35px;
+        border-width: 5px;
+        outline-offset: -11px;
+    }
+
+    .papel-carta:has(.galeria-polaroid .foto-polaroid)::before {
+        font-size: 17px;
+        letter-spacing: 5px;
+    }
+}

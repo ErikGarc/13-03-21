@@ -277,3 +277,609 @@ body.pagina-admin {
     font-size: 12px;
     line-height: 1.5;
 }
+
+/* =====================================
+   ETAPA 15 - SELECTOR DE PLANTILLAS
+===================================== */
+
+#plantillaCarta {
+    width: 100%;
+    padding: 14px 16px;
+
+    border: 2px solid #f2b5cc;
+    border-radius: 14px;
+
+    background: #fff7fa;
+    color: #a65e7d;
+
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 15px;
+
+    cursor: pointer;
+    box-sizing: border-box;
+
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+#plantillaCarta:hover {
+    border-color: #e58fb2;
+}
+
+#plantillaCarta:focus {
+    outline: none;
+    border-color: #d66b98;
+    box-shadow: 0 0 0 4px rgba(214, 107, 152, 0.15);
+}
+
+.ayuda-plantilla {
+    display: block;
+    margin-top: 2px;
+    margin-bottom: 12px;
+
+    color: #b78499;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* =====================================
+   ETAPA 15 - VISTA PREVIA ROMÁNTICA
+===================================== */
+
+.seccion-vista-previa {
+    margin-top: 25px;
+    padding: 22px 15px;
+    background: #fff4f8;
+    border: 1px solid #f4c5d8;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.seccion-vista-previa h3 {
+    color: #c7658c;
+    margin-top: 0;
+}
+
+.descripcion-vista-previa {
+    color: #b78499;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.boton-vista-previa {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+
+    background: #d66b98;
+    color: white;
+
+    border: none;
+    border-radius: 25px;
+
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: background 0.2s ease,
+                transform 0.2s ease;
+}
+
+.boton-vista-previa:hover {
+    background: #c45684;
+    transform: translateY(-2px);
+}
+
+/* CONTENEDOR DEL PAPEL */
+
+#contenedorVistaPrevia {
+    margin-top: 20px;
+}
+
+/* PRIMERA PLANTILLA: CARTA CLÁSICA */
+
+.papel-carta {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 35px 25px;
+    border-radius: 12px;
+
+    background: #fffaf0;
+    border: 2px solid #eac5ce;
+
+    box-shadow: 0 8px 25px rgba(157, 94, 119, 0.12);
+
+    color: #795965;
+    text-align: center;
+
+    overflow-wrap: anywhere;
+}
+
+.plantilla-clasica {
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(245, 181, 203, 0.18),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(245, 181, 203, 0.18),
+            transparent 35%
+        ),
+        #fffaf0;
+
+    border: 2px solid #e8c1ce;
+}
+
+.decoracion-papel {
+    color: #d58aa5;
+    font-size: 24px;
+    letter-spacing: 8px;
+    margin-bottom: 20px;
+}
+
+#tituloVistaPrevia {
+    color: #b66c87;
+    font-family: Georgia, serif;
+    font-size: 25px;
+    line-height: 1.4;
+    margin-bottom: 22px;
+}
+
+#contenidoVistaPrevia {
+    font-family: Georgia, serif;
+    font-size: 16px;
+    line-height: 1.9;
+    white-space: pre-wrap;
+    margin-bottom: 30px;
+}
+
+.firma-vista-previa {
+    color: #b66c87;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 18px;
+    margin-top: 25px;
+}
+
+/* ADAPTACIÓN PARA CELULARES */
+
+@media (max-width: 500px) {
+    .papel-carta {
+        padding: 25px 15px;
+    }
+
+    #tituloVistaPrevia {
+        font-size: 21px;
+    }
+
+    #contenidoVistaPrevia {
+        font-size: 15px;
+    }
+
+    .decoracion-papel {
+        font-size: 20px;
+    }
+}
+
+/* =====================================
+   ETAPA 15 - SEIS PLANTILLAS ROMÁNTICAS
+===================================== */
+
+/* 1. CARTA CLÁSICA */
+.papel-carta.plantilla-clasica {
+    background:
+        radial-gradient(circle at top left,
+            rgba(245, 181, 203, 0.18), transparent 35%),
+        radial-gradient(circle at bottom right,
+            rgba(245, 181, 203, 0.18), transparent 35%),
+        #fffaf0;
+
+    border: 2px solid #e8c1ce;
+    color: #795965;
+}
+
+/* 2. CARTA DE CORAZONES */
+.papel-carta.plantilla-corazones {
+    background:
+        radial-gradient(circle at 10% 15%,
+            #ffd0e1 0 5px, transparent 6px),
+        radial-gradient(circle at 90% 85%,
+            #ffd0e1 0 7px, transparent 8px),
+        #ffe8f0;
+
+    border: 2px dashed #ee9fba;
+    color: #9b4f71;
+}
+
+/* 3. NUESTROS RECUERDOS */
+.papel-carta.plantilla-recuerdos {
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0 32px,
+            rgba(173, 136, 104, 0.08) 33px 34px
+        ),
+        #f8ead9;
+
+    border: 3px solid #d5b48d;
+    color: #80634f;
+}
+
+/* 4. BAJO LAS ESTRELLAS */
+.papel-carta.plantilla-estrellas {
+    background:
+        radial-gradient(circle at 15% 20%,
+            #fff4cc 0 2px, transparent 3px),
+        radial-gradient(circle at 80% 30%,
+            #fff4cc 0 2px, transparent 3px),
+        radial-gradient(circle at 60% 80%,
+            #fff4cc 0 2px, transparent 3px),
+        linear-gradient(135deg, #273451, #43577a);
+
+    border: 2px solid #d7c293;
+    color: #fff1d6;
+}
+
+/* 5. AMOR VINTAGE */
+.papel-carta.plantilla-vintage {
+    background:
+        radial-gradient(circle at center,
+            #f8eedc, #e8d5b8);
+
+    border: 4px double #ad8868;
+    color: #785d47;
+}
+
+/* 6. AMOR MINIMALISTA */
+.papel-carta.plantilla-minimalista {
+    background: #ffffff;
+    border: 1px solid #e8d9dd;
+    color: #806b72;
+}
+
+/* TÍTULOS Y FIRMAS SEGÚN LA PLANTILLA */
+
+.papel-carta.plantilla-corazones #tituloVistaPrevia,
+.papel-carta.plantilla-corazones .firma-vista-previa {
+    color: #d95d88;
+}
+
+.papel-carta.plantilla-recuerdos #tituloVistaPrevia,
+.papel-carta.plantilla-recuerdos .firma-vista-previa {
+    color: #a47755;
+}
+
+.papel-carta.plantilla-estrellas #tituloVistaPrevia,
+.papel-carta.plantilla-estrellas .firma-vista-previa,
+.papel-carta.plantilla-estrellas .decoracion-papel {
+    color: #f1dba7;
+}
+
+.papel-carta.plantilla-vintage #tituloVistaPrevia,
+.papel-carta.plantilla-vintage .firma-vista-previa {
+    color: #966748;
+}
+
+.papel-carta.plantilla-minimalista #tituloVistaPrevia,
+.papel-carta.plantilla-minimalista .firma-vista-previa {
+    color: #b98b9b;
+}
+
+/* EL CONTENIDO HEREDA EL COLOR DEL PAPEL */
+
+.papel-carta #contenidoVistaPrevia {
+    color: inherit;
+}
+
+/* =====================================
+   ETAPA 15 - GALERÍA POLAROID
+===================================== */
+
+.galeria-polaroid {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    height: 410px;
+    margin: 25px auto;
+}
+
+/* FOTOGRAFÍAS POLAROID */
+
+.foto-polaroid {
+    position: absolute;
+    width: 165px;
+    padding: 10px 10px 20px;
+    box-sizing: border-box;
+
+    background: #ffffff;
+    border: 1px solid #f0e5e5;
+
+    box-shadow: 0 8px 18px rgba(75, 45, 55, 0.22);
+
+    transition: transform 0.3s ease;
+}
+
+/* CINTITA ROSA DECORATIVA */
+
+.foto-polaroid::before {
+    content: "♡ ♡ ♡";
+    position: absolute;
+    top: -13px;
+    left: 35px;
+    z-index: 5;
+
+    width: 95px;
+    padding: 5px 0;
+
+    background: #e9a9bb;
+    color: white;
+
+    font-size: 12px;
+    text-align: center;
+
+    transform: rotate(-3deg);
+    opacity: 0.95;
+}
+
+/* ESPACIO DE LA IMAGEN */
+
+.imagen-polaroid {
+    width: 100%;
+    height: 135px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: #b78c98;
+    color: white;
+    overflow: hidden;
+}
+
+.imagen-polaroid span {
+    font-size: 30px;
+}
+
+.imagen-polaroid p {
+    margin: 8px 5px 0;
+    font-size: 11px;
+    text-align: center;
+}
+
+/* TEXTO DEBAJO DE LA FOTO */
+
+.texto-polaroid {
+    display: block;
+    margin-top: 12px;
+
+    font-family: Georgia, serif;
+    font-size: 12px;
+    font-style: italic;
+
+    color: #946b79;
+    text-align: center;
+}
+
+/* POSICIONES DE LAS TRES POLAROID */
+
+.polaroid-1 {
+    top: 10px;
+    left: 15px;
+    z-index: 1;
+    transform: rotate(-10deg);
+}
+
+.polaroid-2 {
+    top: 100px;
+    right: 5px;
+    z-index: 2;
+    transform: rotate(9deg);
+}
+
+.polaroid-3 {
+    top: 215px;
+    left: 25px;
+    z-index: 3;
+    transform: rotate(-7deg);
+}
+
+/* EFECTO AL PASAR EL CURSOR */
+
+.polaroid-1:hover {
+    transform: rotate(-3deg) scale(1.05);
+}
+
+.polaroid-2:hover {
+    transform: rotate(3deg) scale(1.05);
+}
+
+.polaroid-3:hover {
+    transform: rotate(-2deg) scale(1.05);
+}
+
+/* ADAPTACIÓN PARA CELULARES */
+
+@media (max-width: 500px) {
+
+    .galeria-polaroid {
+        max-width: 290px;
+        height: 370px;
+    }
+
+    .foto-polaroid {
+        width: 145px;
+        padding: 8px 8px 16px;
+    }
+
+    .imagen-polaroid {
+        height: 115px;
+    }
+
+    .polaroid-1 {
+        left: 5px;
+    }
+
+    .polaroid-2 {
+        top: 95px;
+        right: 0;
+    }
+
+    .polaroid-3 {
+        top: 205px;
+        left: 15px;
+    }
+
+}
+
+/* ==========================================
+   ETAPA 15 - CARTA CON FOTOS A LA DERECHA
+========================================== */
+
+/* PLANTILLA DE NUESTROS RECUERDOS */
+
+#papelVistaPrevia.plantilla-recuerdos {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.2fr)
+        minmax(0, 1fr);
+
+    column-gap: 25px;
+    align-items: center;
+
+    width: 100%;
+    padding: 35px 25px;
+
+    text-align: left;
+}
+
+/* DECORACIÓN SUPERIOR */
+
+.plantilla-recuerdos .decoracion-papel {
+    grid-column: 1;
+    text-align: center;
+}
+
+/* TÍTULO A LA IZQUIERDA */
+
+.plantilla-recuerdos #tituloVistaPrevia {
+    grid-column: 1;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+/* CONTENIDO A LA IZQUIERDA */
+
+.plantilla-recuerdos #contenidoVistaPrevia {
+    grid-column: 1;
+    text-align: left;
+    line-height: 1.9;
+}
+
+/* TRES FOTOS A LA DERECHA */
+
+.plantilla-recuerdos #galeriaPolaroid {
+    grid-column: 2;
+    grid-row: 1 / 5;
+
+    width: 100%;
+    max-width: 350px;
+
+    margin: 0 auto;
+}
+
+/* FIRMA DEBAJO DEL TEXTO */
+
+.plantilla-recuerdos .firma-vista-previa {
+    grid-column: 1;
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* ==========================================
+   VERSIÓN PARA CELULARES
+========================================== */
+
+@media (max-width: 700px) {
+
+    #papelVistaPrevia.plantilla-recuerdos {
+        display: flex;
+        flex-direction: column;
+
+        padding: 25px 15px;
+        text-align: center;
+    }
+
+    .plantilla-recuerdos #tituloVistaPrevia,
+    .plantilla-recuerdos #contenidoVistaPrevia,
+    .plantilla-recuerdos .firma-vista-previa {
+        width: 100%;
+        text-align: center;
+    }
+
+    .plantilla-recuerdos #galeriaPolaroid {
+        width: 100%;
+        max-width: 290px;
+        margin: 25px auto;
+        flex-shrink: 0;
+    }
+}
+
+/* ==========================================
+   ETAPA 15 - ACABADO DE FOTOS POLAROID
+========================================== */
+
+/* LAS FOTOGRAFÍAS LLENAN SU MARCO */
+
+.imagen-polaroid img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* MARCOS DE FOTOGRAFÍA */
+
+.foto-polaroid {
+    border-radius: 3px;
+    box-shadow:
+        0 5px 10px rgba(75, 45, 55, 0.12),
+        0 12px 25px rgba(75, 45, 55, 0.18);
+}
+
+/* EFECTO DE PAPEL FOTOGRÁFICO */
+
+.foto-polaroid::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    border: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+/* CINTITAS DECORATIVAS */
+
+.foto-polaroid::before {
+    box-shadow: 0 2px 5px rgba(75, 45, 55, 0.12);
+}
+
+/* TRANSICIONES SUAVES */
+
+.foto-polaroid {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.foto-polaroid:hover {
+    box-shadow:
+        0 8px 15px rgba(75, 45, 55, 0.16),
+        0 16px 30px rgba(75, 45, 55, 0.22);
+}
+
+

@@ -1,6 +1,6 @@
 
-
 import { auth } from "./firebase-config.js";
+import { crearClienteSupabase } from "./supabase-config.js";
 
 import {
     onAuthStateChanged,
@@ -21,6 +21,24 @@ import {
 // ==================================
 
 const db = getFirestore();
+
+const supabase = crearClienteSupabase(auth);
+// ==========================================
+// DESCARGAR FOTOGRAFÍAS PRIVADAS
+// ==========================================
+
+async function descargarFotoCarta(rutaFoto) {
+
+    const { data, error } = await supabase.storage
+        .from("fotos-cartas")
+        .download(rutaFoto);
+
+    if (error) {
+        throw error;
+    }
+
+    return URL.createObjectURL(data);
+}
 
 const estado = document.getElementById("estadoBuzon");
 const seccion = document.getElementById("seccionCartas");
@@ -57,6 +75,11 @@ const botonMusica =
 
 const estadoMusica =
     document.getElementById("estadoMusica");
+    const nombreCancion =
+    document.getElementById("nombreCancion");
+
+const nombreArtista =
+    document.getElementById("nombreArtista");
 
 reproductorCarta.loop = true;
 reproductorCarta.volume = 0.5;
@@ -71,11 +94,19 @@ function reproducirMusicaCarta(carta) {
     contenedorMusica.hidden = true;
 
     if (!carta.musica) {
-        return;
-    }
+    return;
+}
 
-    reproductorCarta.src = carta.musica;
-    contenedorMusica.hidden = false;
+// Mostrar información de la canción
+nombreCancion.textContent =
+    "🎵 " + (carta.tituloCancion || "Nuestra canción especial");
+
+nombreArtista.textContent =
+    "🎤 " + (carta.artistaCancion || "Un artista especial");
+
+// Preparar reproductor
+reproductorCarta.src = carta.musica;
+contenedorMusica.hidden = false;
 
     estadoMusica.textContent = "Cargando canción...";
     botonMusica.textContent = "⏸ Pausar";
@@ -212,6 +243,63 @@ function abrirModalCarta(carta, boton) {
 
     contenidoModal.textContent =
         carta.contenido || "";
+
+        // ==========================================
+// GALERÍA DE FOTOGRAFÍAS POLAROID
+// ==========================================
+
+let galeria = papelCarta.querySelector(".galeria-polaroid");
+
+if (!galeria) {
+    galeria = document.createElement("div");
+    galeria.className = "galeria-polaroid";
+   contenidoModal.insertAdjacentElement("beforebegin", galeria);
+}
+
+    // Limpiar fotografías de la carta anterior
+    galeria.replaceChildren();
+// ==========================================
+// MOSTRAR FOTOGRAFÍAS DE LA CARTA
+// ==========================================
+
+if (Array.isArray(carta.fotos) && carta.fotos.length > 0) {
+
+    galeria.textContent = "Cargando nuestros recuerdos... 💗";
+
+    Promise.all(
+        carta.fotos.map(async (rutaFoto) => {
+
+            const urlFoto = await descargarFotoCarta(rutaFoto);
+
+            const polaroid = document.createElement("figure");
+            polaroid.className = "foto-polaroid";
+
+            const imagen = document.createElement("img");
+            imagen.src = urlFoto;
+            imagen.alt = "Un recuerdo especial de nosotros";
+            imagen.loading = "lazy";
+
+            polaroid.appendChild(imagen);
+
+            return polaroid;
+        })
+    )
+    .then((polaroids) => {
+
+        // Evitar mostrar fotos si ya se abrió otra carta
+        if (modalCarta.hidden || galeria !== papelCarta.querySelector(".galeria-polaroid")) {
+            polaroids.forEach(p => URL.revokeObjectURL(p.querySelector("img").src));
+            return;
+        }
+
+        galeria.replaceChildren(...polaroids);
+    })
+    .catch((error) => {
+        console.error("Error al cargar fotografías:", error);
+        galeria.textContent = "No pudimos cargar las fotografías. 💔";
+    });
+}
+
     reproducirMusicaCarta(carta);   
 
     botonAnterior = boton;
