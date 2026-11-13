@@ -574,7 +574,10 @@ actualizarEtiquetaLectura(yaLeida);
                 botonAbrir.className = "boton-abrir-carta";
 
                 const sobre = document.createElement("span");
-                sobre.className = "sobre-romantico";
+                sobre.className =
+                carta.plantilla === "libro-romantico"
+                 ? "sobre-romantico sobre-aniversario"
+                : "sobre-romantico";
                 sobre.setAttribute("aria-hidden", "true");
 
                 const solapa = document.createElement("span");
