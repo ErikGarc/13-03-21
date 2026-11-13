@@ -1,0 +1,1036 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Nuestra historia ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      background: linear-gradient(
+        #8bd6ff,
+        #dff7ff,
+        #fff0f5
+      );
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-family: Georgia, serif;
+    }
+
+    .contenedor-libro {
+      width: 92%;
+      max-width: 850px;
+      text-align: center;
+    }
+
+/* PROTEGER EL LIBRO MIENTRAS SE VERIFICA EL ACCESO */
+
+.contenedor-libro {
+    display: none;
+}
+
+.contenedor-libro.acceso-autorizado {
+    display: block;
+}
+
+
+    h1 {
+      color: #a84e78;
+      font-size: clamp(22px, 4vw, 32px);
+      margin-bottom: 25px;
+    }
+
+    .libro {
+      position: relative;
+      width: 100%;
+      height: min(65dvh, 520px);
+      min-height: 340px;
+
+      background: #fff9ef;
+      border-radius: 12px;
+
+      box-shadow:
+        0 12px 35px #8b587044,
+        inset 0 0 30px #e9c9b855;
+
+      overflow: hidden;
+    }
+
+    .pagina {
+      position: absolute;
+      inset: 0;
+      padding: 35px 28px;
+
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      color: #89536b;
+    }
+
+    
+/* PÁGINAS DEL LIBRO */
+
+.pagina {
+  transform-origin: left center;
+  backface-visibility: hidden;
+}
+
+.pagina.activa {
+  display: flex;
+}
+
+/* ANIMACIÓN AL AVANZAR */
+
+.pagina.entrar-adelante {
+  animation: entrarAdelante 0.8s ease both;
+}
+
+@keyframes entrarAdelante {
+  from {
+    opacity: 0;
+    transform: perspective(1200px)
+               rotateY(-35deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: perspective(1200px)
+               rotateY(0deg);
+  }
+}
+
+/* ANIMACIÓN AL RETROCEDER */
+
+.pagina.entrar-atras {
+  animation: entrarAtras 0.8s ease both;
+}
+
+@keyframes entrarAtras {
+  from {
+    opacity: 0;
+    transform: perspective(1200px)
+               rotateY(35deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: perspective(1200px)
+               rotateY(0deg);
+  }
+}
+
+
+    .pagina h2 {
+      color: #c04478;
+      font-size: 25px;
+    }
+
+    .pagina p {
+      font-size: 17px;
+      line-height: 1.7;
+      max-width: 580px;
+    }
+
+    .controles {
+      margin-top: 25px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .controles button {
+      background: #f47ba9;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-family: Georgia, serif;
+      font-size: 15px;
+    }
+
+    .controles button:disabled {
+      opacity: .4;
+      cursor: default;
+    }
+
+    #numero-pagina {
+      color: #a84e78;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      .libro {
+        height: 65dvh;
+        min-height: 380px;
+      }
+
+      .pagina {
+        padding: 22px;
+      }
+
+      .pagina p {
+        font-size: 14px;
+      }
+
+      .controles {
+        gap: 10px;
+      }
+
+      .controles button {
+        padding: 10px 13px;
+        font-size: 13px;
+      }
+    }
+
+
+/* DISEÑO ROMÁNTICO DEL LIBRO */
+
+.libro {
+  background: #fffaf0;
+
+  border: 8px solid #f4dfd2;
+
+  box-shadow:
+    0 15px 35px rgba(116, 67, 91, 0.25),
+    inset 0 0 45px rgba(226, 179, 166, 0.22);
+}
+
+/* MARCO DECORATIVO */
+
+.libro::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+
+  border: 2px solid #e8bdca;
+  border-radius: 5px;
+
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ESQUINAS ROMÁNTICAS */
+
+.libro::after {
+  content: "♡";
+  position: absolute;
+  top: 18px;
+  right: 25px;
+
+  color: #d99ab4;
+  font-size: 28px;
+
+  pointer-events: none;
+  z-index: 6;
+}
+
+/* TÍTULOS DE LAS PÁGINAS */
+
+.pagina h2 {
+  font-size: clamp(20px, 3vw, 28px);
+  color: #b95c85;
+  font-style: italic;
+  margin-bottom: 22px;
+}
+
+/* TEXTO DE NUESTRA HISTORIA */
+
+.pagina p {
+  color: #78536a;
+  line-height: 1.9;
+  letter-spacing: 0.2px;
+}
+
+/* DETALLE EN LA PARTE INFERIOR */
+
+.pagina::after {
+  content: "♡ 13 · 11 · 26 ♡";
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  color: #c990aa;
+  font-size: 12px;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+
+/* GALERÍA DE FOTOGRAFÍAS */
+
+.galeria-polaroid {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 85%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+
+  z-index: 7;
+}
+
+/* HILO DE LAS FOTOGRAFÍAS */
+
+.hilo-fotos {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+
+  background: #b98b78;
+}
+
+/* MARCOS POLAROID */
+
+.polaroid {
+  position: relative;
+  width: 110px;
+  padding: 7px 7px 20px;
+
+  background: white;
+
+  box-shadow: 0 5px 12px #0002;
+
+  transform: rotate(-6deg);
+}
+
+.polaroid:nth-child(3) {
+  transform: rotate(5deg);
+}
+
+.polaroid:nth-child(4) {
+  transform: rotate(-4deg);
+}
+
+.polaroid img {
+  display: block;
+  width: 100%;
+  height: 85px;
+
+  object-fit: cover;
+}
+
+/* PINZAS */
+
+.pinza {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+
+  width: 10px;
+  height: 22px;
+
+  background: #c69b70;
+  border-radius: 3px;
+
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+/* ADAPTACIÓN PARA IPHONE */
+
+@media (max-width: 600px) {
+
+  .galeria-polaroid {
+    width: 90%;
+    top: 25px;
+  }
+
+  .polaroid {
+    width: 75px;
+    padding: 5px 5px 14px;
+  }
+
+  .polaroid img {
+    height: 60px;
+  }
+
+  .pinza {
+    width: 8px;
+    height: 17px;
+  }
+}
+
+/* VISOR ROMÁNTICO DE FOTOGRAFÍAS */
+
+.visor-foto {
+  position: fixed;
+  inset: 0;
+  background: rgba(35, 20, 35, 0.65);
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+  z-index: 1000;
+}
+
+.visor-foto.abierto {
+  display: flex;
+  animation: aparecerVisor 0.3s ease;
+}
+
+/* POLAROID AMPLIADA */
+
+.foto-polaroid-grande {
+  position: relative;
+
+  width: fit-content;
+  max-width: 85vw;
+
+  background: white;
+  padding: 10px 10px 25px;
+
+  border-radius: 4px;
+  box-shadow: 0 15px 40px #0005;
+
+  transform: rotate(-3deg);
+  animation: abrirPolaroid 0.4s ease both;
+}
+
+#foto-ampliada {
+  display: block;
+
+  width: auto;
+  height: auto;
+
+  max-width: min(75vw, 340px);
+  max-height: 60dvh;
+
+  object-fit: contain;
+}
+
+/* BOTÓN PARA CERRAR */
+
+.cerrar-foto {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+
+  width: 35px;
+  height: 35px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #f47ba9;
+  color: white;
+
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* ANIMACIONES */
+
+@keyframes aparecerVisor {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes abrirPolaroid {
+  from {
+    opacity: 0;
+    transform: scale(0.7) rotate(-8deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(-3deg);
+  }
+}
+
+/* INDICAR QUE LAS FOTOS SE PUEDEN TOCAR */
+
+.polaroid {
+  cursor: pointer;
+}
+
+/* ADAPTACIÓN PARA IPHONE */
+
+@media (max-width: 600px) {
+  .foto-polaroid-grande {
+    padding: 7px 7px 18px;
+  }
+
+  #foto-ampliada {
+    max-width: 75vw;
+    max-height: 50dvh;
+  }
+}
+
+
+/* ESPACIO DE LECTURA PARA TEXTOS LARGOS */
+
+.pagina {
+  justify-content: flex-start;
+
+  /* Espacio reservado para las Polaroid */
+  padding-top: 170px;
+  padding-bottom: 55px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  scrollbar-width: thin;
+  scrollbar-color: #d9a2b9 transparent;
+}
+
+.pagina h2 {
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.pagina p {
+  width: 100%;
+  max-width: 580px;
+
+  text-align: justify;
+  white-space: pre-line;
+
+  overflow-wrap: anywhere;
+}
+
+/* Mantener visible la fecha decorativa */
+
+.pagina::after {
+  position: sticky;
+  bottom: -40px;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+/* ADAPTACIÓN PARA IPHONE */
+
+@media (max-width: 600px) {
+  .pagina {
+    padding-top: 135px;
+    padding-bottom: 45px;
+  }
+
+  .pagina p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+}
+
+/* REDUCIR ESPACIO ENTRE TÍTULO Y TEXTO */
+
+.pagina h2 {
+  margin-top: 0;
+  margin-bottom: 2px;
+}
+
+.pagina p {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+/* BOTÓN PARA REGRESAR AL BUZÓN */
+
+#btnVolverBuzon {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+
+    background: #f47ba9;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 13px 24px;
+
+    font-family: Georgia, serif;
+    font-size: 15px;
+    font-weight: bold;
+
+    box-shadow: 0 5px 18px #b94b7b45;
+    cursor: pointer;
+
+    display: none;
+}
+
+#btnVolverBuzon:hover {
+    background: #e65f96;
+}
+
+
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor-libro">
+
+    <h1>❤️ Nuestra historia ❤️</h1>
+
+    <div class="libro">
+
+        
+<!-- FOTOGRAFÍAS POLAROID -->
+<div class="galeria-polaroid">
+
+  <div class="hilo-fotos"></div>
+
+  <div class="polaroid">
+    <span class="pinza"></span>
+    <img alt="Recuerdo">
+  </div>
+
+  <div class="polaroid">
+    <span class="pinza"></span>
+    <img alt="Recuerdo">
+  </div>
+
+  <div class="polaroid">
+    <span class="pinza"></span>
+    <img alt="Recuerdo">
+  </div>
+
+</div>
+
+     
+<!-- PÁGINA 1 -->
+<section class="pagina activa">
+    <h2 id="tituloLibro1">
+        Holaaa Hermosaaaaaaa ❤️❤️❤️
+    </h2>
+
+    <p id="textoLibro1">
+        Aquí comenzará nuestra primera página. ❤️
+    </p>
+</section>
+
+<!-- PÁGINA 2 -->
+<section class="pagina">
+    <h2 id="tituloLibro2">
+        Todo lo que hemos vivido
+    </h2>
+
+    <p id="textoLibro2">
+        Aquí continuará nuestra historia. ❤️
+    </p>
+</section>
+
+<!-- PÁGINA 3 -->
+<section class="pagina">
+    <h2 id="tituloLibro3">
+        Todo lo que nos espera
+    </h2>
+
+    <p id="textoLibro3">
+        Aquí escribiremos nuestra tercera página. ❤️
+    </p>
+</section>
+
+
+    </div>
+
+
+<!-- VISOR ROMÁNTICO DE FOTOGRAFÍAS -->
+<div id="visor-foto" class="visor-foto">
+
+  <div class="foto-polaroid-grande">
+
+    <button
+      id="cerrar-foto"
+      class="cerrar-foto"
+      type="button"
+      aria-label="Cerrar fotografía"
+    >
+      ✕
+    </button>
+
+    <img
+      id="foto-ampliada"
+      alt="Nuestro recuerdo"
+    >
+
+  </div>
+
+</div>
+
+    <!-- BOTÓN PARA REGRESAR AL BUZÓN -->
+    <button id="btnVolverBuzon" type="button">
+     💌 Volver a nuestro buzón
+    </button>
+    <div class="controles">
+      <button id="anterior" disabled>
+        ❮ Anterior
+      </button>
+
+      <span id="numero-pagina">1 / 3</span>
+
+      <button id="siguiente">
+        Siguiente ❯
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    const paginas = document.querySelectorAll(".pagina");
+
+    const anterior = document.getElementById("anterior");
+    const siguiente = document.getElementById("siguiente");
+    const numeroPagina = document.getElementById("numero-pagina");
+
+    let paginaActual = 0;
+
+   
+    function mostrarPagina(direccion = "adelante") {
+
+  paginas.forEach((pagina, indice) => {
+
+    pagina.classList.remove(
+      "activa",
+      "entrar-adelante",
+      "entrar-atras"
+    );
+
+    if (indice === paginaActual) {
+
+      pagina.classList.add("activa");
+
+      // Reiniciar la animación
+      void pagina.offsetWidth;
+
+      pagina.classList.add(
+        direccion === "adelante"
+          ? "entrar-adelante"
+          : "entrar-atras"
+      );
+    }
+  });
+
+  numeroPagina.textContent =
+    `${paginaActual + 1} / ${paginas.length}`;
+
+  anterior.disabled = paginaActual === 0;
+
+  siguiente.disabled =
+    paginaActual === paginas.length - 1;
+}
+
+
+  
+
+siguiente.addEventListener("click", () => {
+
+  if (paginaActual < paginas.length - 1) {
+    paginaActual++;
+    mostrarPagina("adelante");
+  }
+
+  // Mostrar botón únicamente en la última página
+  const botonVolver = document.getElementById("btnVolverBuzon");
+
+  botonVolver.style.display =
+    paginaActual === paginas.length - 1 ? "block" : "none";
+
+});
+
+
+anterior.addEventListener("click", () => {
+
+  if (paginaActual > 0) {
+    paginaActual--;
+    mostrarPagina("atras");
+    document.getElementById("btnVolverBuzon").style.display = "none";
+
+  }
+
+});
+
+/* ==========================================
+   REGRESAR A NUESTRO BUZÓN
+========================================== */
+
+const btnVolverBuzon =
+    document.getElementById("btnVolverBuzon");
+
+btnVolverBuzon.addEventListener("click", () => {
+
+    window.location.href = "buzon.html";
+
+});
+
+
+
+
+/* VISOR DE FOTOGRAFÍAS */
+
+const visorFoto = document.getElementById("visor-foto");
+const fotoAmpliada = document.getElementById("foto-ampliada");
+const cerrarFoto = document.getElementById("cerrar-foto");
+
+// Obtener nuestras tres fotografías
+const fotografias = document.querySelectorAll(".polaroid img");
+
+// Abrir fotografía seleccionada
+fotografias.forEach((foto) => {
+  foto.addEventListener("click", () => {
+
+    fotoAmpliada.src = foto.src;
+    fotoAmpliada.alt = foto.alt;
+
+    visorFoto.classList.add("abierto");
+  });
+});
+
+// Cerrar fotografía
+function cerrarVisor() {
+  visorFoto.classList.remove("abierto");
+  fotoAmpliada.removeAttribute("src");
+}
+
+cerrarFoto.addEventListener("click", cerrarVisor);
+
+// Cerrar tocando el fondo oscuro
+visorFoto.addEventListener("click", (evento) => {
+  if (evento.target === visorFoto) {
+    cerrarVisor();
+  }
+});
+
+// Cerrar presionando Escape
+document.addEventListener("keydown", (evento) => {
+  if (evento.key === "Escape") {
+    cerrarVisor();
+  }
+});
+
+  </script>
+
+<!-- CONEXIÓN DEL LIBRO ROMÁNTICO CON FIREBASE -->
+<script type="module">
+    import { auth } from "./js/firebase-config.js";
+
+    
+import {
+    crearClienteSupabase
+} from "./js/supabase-config.js";
+
+// Cliente para descargar nuestras fotografías privadas
+const supabase = crearClienteSupabase(auth);
+    
+
+    import {
+        onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    Timestamp
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+// Preparar conexión con Firestore
+const db = getFirestore();
+
+// Obtener el identificador de la carta desde la URL
+const parametros = new URLSearchParams(window.location.search);
+const idCarta = parametros.get("carta");
+
+// Identificar al administrador del buzón
+const UID_ADMIN = "mcAB5fSljFaIdT6N7miwIUhLKj82";
+
+// Detectar si solicitamos una vista previa
+const modoVistaPrevia =
+    parametros.get("vista") === "previa";
+
+
+    
+onAuthStateChanged(auth, async (usuario) => {
+
+    // Verificar que exista una sesión activa
+    if (!usuario) {
+        window.location.replace("login.html");
+        return;
+    }
+
+    // Verificar que recibimos el ID de una carta
+    if (!idCarta) {
+        console.error("No se recibió el ID de la carta.");
+        return;
+    }
+
+    try {
+
+        // Consultar la carta en Firestore
+        const referenciaCarta = doc(db, "cartas", idCarta);
+        const resultado = await getDoc(referenciaCarta);
+
+        if (!resultado.exists()) {
+            console.error("La carta no existe.");
+            return;
+        }
+
+        const carta = resultado.data();
+        console.log("📸 Fotografías guardadas en Firebase:", carta.fotos);
+
+
+        // Verificar que sea nuestro libro romántico
+        if (carta.plantilla !== "libro-romantico") {
+            console.error("Esta carta no es un libro romántico.");
+            return;
+        }
+
+        
+// Verificar si el usuario es el administrador
+const esAdministrador = usuario.uid === UID_ADMIN;
+
+// Autorizar vista previa únicamente al administrador
+const vistaPreviaAutorizada =
+    modoVistaPrevia && esAdministrador;
+
+// Comprobar si la carta está publicada y disponible
+const fechaValida =
+    carta.fechaPublicacion instanceof Timestamp &&
+    carta.fechaPublicacion.toMillis() <= Date.now();
+
+const lecturaAutorizada =
+    carta.publicada === true && fechaValida;
+
+// Permitir lectura normal o vista previa autorizada
+if (!lecturaAutorizada && !vistaPreviaAutorizada) {
+    console.error("Esta carta todavía no está disponible.");
+    return;
+}
+
+
+        
+console.log("❤️ Libro romántico autorizado.");
+
+// Obtener títulos y textos guardados en Firebase
+const titulos = carta.titulosLibro;
+const textos = carta.paginasLibro;
+
+// Verificar que existan las tres páginas completas
+if (
+    !Array.isArray(titulos) ||
+    !Array.isArray(textos) ||
+    titulos.length !== 3 ||
+    textos.length !== 3 ||
+    titulos.some(titulo => typeof titulo !== "string") ||
+    textos.some(texto => typeof texto !== "string")
+) {
+    console.error("El libro no tiene sus tres páginas completas.");
+    return;
+}
+
+// Colocar los títulos y textos en nuestro libro
+for (let i = 1; i <= 3; i++) {
+
+    document.getElementById(`tituloLibro${i}`).textContent =
+        titulos[i - 1];
+
+    document.getElementById(`textoLibro${i}`).textContent =
+        textos[i - 1];
+
+}
+
+/* ==========================================
+   DESCARGAR FOTOGRAFÍAS PRIVADAS DEL LIBRO
+========================================== */
+
+
+async function descargarFotoLibro(rutaFoto) {
+
+    const { data, error } = await supabase.storage
+        .from("fotos-cartas")
+        .download(rutaFoto);
+
+    if (error) {
+        throw error;
+    }
+
+    return URL.createObjectURL(data);
+}
+
+
+/* ==========================================
+   MOSTRAR FOTOGRAFÍAS EN LAS POLAROID
+========================================== */
+
+const fotosLibro = document.querySelectorAll(".polaroid img");
+
+if (Array.isArray(carta.fotos) && carta.fotos.length > 0) {
+
+    try {
+
+        const rutasFotos = carta.fotos.slice(0, 3);
+
+        const urlsFotos = await Promise.all(
+            rutasFotos.map(ruta => descargarFotoLibro(ruta))
+        );
+
+        urlsFotos.forEach((url, indice) => {
+
+            if (fotosLibro[indice]) {
+                fotosLibro[indice].src = url;
+            }
+
+        });
+
+        console.log("📸 Fotografías cargadas correctamente.");
+
+    } catch (error) {
+
+        console.error(
+            "No fue posible cargar las fotografías:",
+            error
+        );
+
+    }
+}
+
+// Mostrar el libro después de cargar sus datos
+document.querySelector(".contenedor-libro")
+    .classList.add("acceso-autorizado");
+
+console.log("📖 Nuestro libro romántico está listo.");
+
+
+    } catch (error) {
+
+        console.error(
+            "No fue posible consultar el libro romántico:",
+            error
+        );
+
+    }
+
+});
+
+</script>
+
+
+</body>
+</html>

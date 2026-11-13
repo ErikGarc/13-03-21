@@ -181,12 +181,71 @@ const musica = document.getElementById("musicaCarta");
 const tituloCancion = document.getElementById("tituloCancion");
 const artistaCancion = document.getElementById("artistaCancion");
 
+/* ==========================================
+   CONTENIDO DEL LIBRO ROMÁNTICO
+========================================== */
+
+const paginaLibro1 =
+    document.getElementById("paginaLibro1");
+
+const paginaLibro2 =
+    document.getElementById("paginaLibro2");
+
+const paginaLibro3 =
+    document.getElementById("paginaLibro3");
+
+
+/* ==========================================
+   TÍTULOS PERSONALIZADOS DEL LIBRO
+========================================== */
+
+const tituloPaginaLibro1 =
+    document.getElementById("tituloPaginaLibro1");
+
+const tituloPaginaLibro2 =
+    document.getElementById("tituloPaginaLibro2");
+
+const tituloPaginaLibro3 =
+    document.getElementById("tituloPaginaLibro3");
+
+
+const btnVistaPreviaLibro =
+    document.getElementById("btnVistaPreviaLibro");
+
+btnVistaPreviaLibro.addEventListener("click", () => {
+
+    // Necesitamos el ID de una carta ya guardada
+    if (!cartaEnEdicion) {
+        alert(
+            "💗 Primero guarda nuestro libro como borrador y después selecciónalo para editar."
+        );
+        return;
+    }
+
+    // Abrir la vista previa en una nueva pestaña
+    const parametros = new URLSearchParams({
+        carta: cartaEnEdicion,
+        vista: "previa"
+    });
+
+  
+window.open(
+    "prueba-aniversario.html?" + parametros.toString(),
+    "_blank",
+    "noopener,noreferrer"
+);
+
+
+});
+
+
 const botonBorrador = document.getElementById("guardarBorrador");
 const botonPublicar = document.getElementById("publicarCarta");
 const botonCancelar = document.getElementById("cancelarEdicion");
 const mensaje = document.getElementById("mensajeAdmin");
 const listaAdmin = document.getElementById("listaAdminCartas");
 const estadoListado = document.getElementById("estadoListado");
+
 // Ocultar hasta comprobar el acceso
 panel.hidden = true;
 enlaceVolver.hidden = true;
@@ -246,6 +305,34 @@ async function guardarCarta(publicar) {
     const plantillaTexto =
     document.getElementById("plantillaCarta").value;
 
+
+/* ==========================================
+   OBTENER LAS TRES PÁGINAS DEL LIBRO
+========================================== */
+
+const esLibroRomantico =
+    plantillaTexto === "libro-romantico";
+
+const paginasLibro = esLibroRomantico
+    ? [
+        paginaLibro1.value.trim(),
+        paginaLibro2.value.trim(),
+        paginaLibro3.value.trim()
+      ]
+    : [];
+
+/* ==========================================
+   TÍTULOS DE LAS TRES PÁGINAS
+========================================== */
+
+const titulosLibro = esLibroRomantico
+    ? [
+        tituloPaginaLibro1.value.trim(),
+        tituloPaginaLibro2.value.trim(),
+        tituloPaginaLibro3.value.trim()
+      ]
+    : [];
+
     
     const fotosSeleccionadas = [
     document.getElementById("fotoCarta1")?.files[0],
@@ -255,11 +342,42 @@ async function guardarCarta(publicar) {
 
 
 
-    if (!tituloTexto || !contenidoTexto) {
-        mensaje.textContent =
-            "Escribe el título y el contenido de tu carta. 💗";
-        return;
-    }
+   
+/* ==========================================
+   VALIDAR CARTA NORMAL O LIBRO ROMÁNTICO
+========================================== */
+
+// Todas las cartas necesitan título
+if (!tituloTexto) {
+    mensaje.textContent =
+        "💗 Escribe el título de tu carta.";
+    return;
+}
+
+// Las cartas normales necesitan contenido
+if (!esLibroRomantico && !contenidoTexto) {
+    mensaje.textContent =
+        "💌 Escribe el contenido de tu carta.";
+    return;
+}
+
+// Nuestro libro necesita sus tres páginas
+if (esLibroRomantico && paginasLibro.some(pagina => !pagina)) {
+    mensaje.textContent =
+        "📖 Escribe el contenido de las tres páginas de nuestro libro.";
+    return;
+}
+
+/* ==========================================
+   VALIDAR LOS TÍTULOS DEL LIBRO ROMÁNTICO
+========================================== */
+
+if (esLibroRomantico && titulosLibro.some(titulo => !titulo)) {
+    mensaje.textContent =
+        "💗 Escribe un título para cada una de las tres páginas.";
+    return;
+}
+
 
     if (!fechaTexto) {
         mensaje.textContent =
@@ -344,6 +462,8 @@ try {
     const datosCarta = {
     titulo: tituloTexto,
     contenido: contenidoTexto,
+    paginasLibro: paginasLibro,
+    titulosLibro: titulosLibro,
     musica: musicaTexto,
     tituloCancion: tituloCancionTexto,
     artistaCancion: artistaCancionTexto,
@@ -392,6 +512,8 @@ try {
             : "¡Borrador guardado correctamente! 💗";
 
        formulario.reset();
+       actualizarCamposLibro();
+
 
             // Volver al modo de creación
          cartaEnEdicion = null;
@@ -447,6 +569,26 @@ function editarCarta(carta) {
     // Recuperar título y contenido
     titulo.value = carta.titulo || "";
     contenido.value = carta.contenido || "";
+    /* ==========================================
+   RECUPERAR LAS TRES PÁGINAS DEL LIBRO
+    ========================================== */
+    const paginasGuardadas = Array.isArray(carta.paginasLibro)
+        ? carta.paginasLibro
+        : [];
+    paginaLibro1.value = paginasGuardadas[0] || "";
+    paginaLibro2.value = paginasGuardadas[1] || "";
+    paginaLibro3.value = paginasGuardadas[2] || "";
+
+    /* ==========================================
+      RECUPERAR TÍTULOS DEL LIBRO ROMÁNTICO
+    ========================================== */
+    const titulosGuardados = Array.isArray(carta.titulosLibro)
+    ? carta.titulosLibro
+    : [];
+    tituloPaginaLibro1.value = titulosGuardados[0] || "";
+    tituloPaginaLibro2.value = titulosGuardados[1] || "";
+    tituloPaginaLibro3.value = titulosGuardados[2] || "";
+
     musica.value = carta.musica || "";
     tituloCancion.value = carta.tituloCancion || "";
     artistaCancion.value = carta.artistaCancion || "";
@@ -463,6 +605,7 @@ function editarCarta(carta) {
 
     // Actualizar el diseño de la vista previa
     actualizarPlantillaVistaPrevia();
+    actualizarCamposLibro();
 
     // Ocultar la vista previa anterior
     contenedorVistaPrevia.hidden = true;
@@ -633,6 +776,8 @@ function cancelarEdicion() {
 
     // Limpiar el formulario
     formulario.reset();
+    actualizarCamposLibro();
+
 
     // Ocultar el botón de cancelar
     botonCancelar.hidden = true;
@@ -814,6 +959,32 @@ selectorPlantilla.addEventListener(
 // Aplicar el diseño seleccionado al iniciar
 actualizarPlantillaVistaPrevia();
 
+/* ==========================================
+   MOSTRAR CAMPOS DEL LIBRO ROMÁNTICO
+========================================== */
+
+const seccionLibroRomantico =
+    document.getElementById("seccionLibroRomantico");
+
+function actualizarCamposLibro() {
+
+    const esLibro =
+        selectorPlantilla.value === "libro-romantico";
+
+    seccionLibroRomantico.hidden = !esLibro;
+
+}
+
+// Mostrar u ocultar al cambiar de plantilla
+selectorPlantilla.addEventListener(
+    "change",
+    actualizarCamposLibro
+);
+
+// Comprobar al cargar el administrador
+actualizarCamposLibro();
+
+
 
 const contenedorVistaPrevia =
     document.getElementById("contenedorVistaPrevia");
@@ -930,7 +1101,11 @@ camposFotos.forEach((campo, indice) => {
         espacio.replaceChildren(imagen);
 
         // Mostrar automáticamente la plantilla de recuerdos
-        selectorPlantilla.value = "recuerdos";
+        
+        if (selectorPlantilla.value !== "libro-romantico") {
+            selectorPlantilla.value = "recuerdos";
+        }
+
         actualizarPlantillaVistaPrevia();
 
     });

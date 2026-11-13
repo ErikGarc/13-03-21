@@ -646,10 +646,37 @@ actualizarEtiquetaLectura(yaLeida);
                         );
                     });
 
-                    // Mostrar la carta grande
-                    abrirModalCarta(carta, botonAbrir);
-                    marcarCartaLeida(idCarta);
-                    actualizarEtiquetaLectura(true);
+                   
+/* ==========================================
+   ABRIR CARTA NORMAL O LIBRO ROMÁNTICO
+========================================== */
+
+
+if (carta.plantilla === "libro-romantico") {
+
+    // Abrir el libro romántico seleccionado
+    const parametros = new URLSearchParams({
+        carta: idCarta
+    });
+
+    window.location.href =
+        
+    "prueba-aniversario.html?" + parametros.toString();
+
+
+}
+ else {
+
+    // Mantener la apertura original
+    // de las otras seis plantillas.
+    abrirModalCarta(carta, botonAbrir);
+
+}
+
+// Registrar la carta como leída
+marcarCartaLeida(idCarta);
+actualizarEtiquetaLectura(true);
+
                     // Restaurar el sobre
                     sobre.classList.remove("animando");
 

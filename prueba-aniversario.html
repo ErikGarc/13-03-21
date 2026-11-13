@@ -1,0 +1,1049 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Nuestra aventura - Prueba</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    /* ESCENARIO */
+
+    .escena {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+
+      background: linear-gradient(
+        #8bd6ff 0%,
+        #dff7ff 65%,
+        #fff0f5 100%
+      );
+    }
+
+    /* TITULO */
+
+    .titulo {
+      position: absolute;
+      top: 1%;
+      left: 0;
+      width: 100%;
+      margin: 0;
+      text-align: center;
+      color: #a54d78;
+      font-size: clamp(22px, 4vw, 34px);
+      z-index: 6;
+    }
+
+    /* PERSONAJES */
+
+    .personaje-con-globo {
+      position: absolute;
+      bottom: 4%;
+      height: clamp(145px, 27dvh, 245px);
+      opacity: 0;
+      z-index: 2;
+    }
+
+    .imagen-personaje {
+      display: block;
+      height: 100%;
+      width: auto;
+    }
+
+    .carl {
+      left: 39%;
+      animation: vueloCarl 5s ease-in-out 0.5s both;
+    }
+
+    .ellie {
+      right: 39%;
+      animation: vueloEllie 5s ease-in-out 0.5s both;
+    }
+
+    /* GLOBOS ORIGINALES */
+
+    .globo {
+      position: absolute;
+      width: 65px;
+      height: 85px;
+      border-radius: 50% 50% 48% 48%;
+      z-index: 2;
+
+      box-shadow:
+        inset -12px -8px 16px #00000018;
+
+      animation:
+        desaparecerGlobo 0.7s ease-in 5.5s forwards;
+    }
+
+    .globo::before {
+      content: "";
+      position: absolute;
+      width: 17px;
+      height: 25px;
+      top: 13px;
+      left: 12px;
+      border-radius: 50%;
+      background: #ffffff70;
+      transform: rotate(-30deg);
+    }
+
+    .globo::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 27px;
+      width: 12px;
+      height: 12px;
+      background: inherit;
+
+      clip-path: polygon(
+        50% 0,
+        0 100%,
+        100% 100%
+      );
+    }
+
+    .globo-azul {
+      background: #65bfff;
+      top: -125px;
+      right: -5px;
+    }
+
+    .globo-rosa {
+      background: #ff8fb8;
+      top: -125px;
+      left: 45%;
+      transform: translateX(-50%);
+    }
+
+    @keyframes desaparecerGlobo {
+      to {
+        opacity: 0;
+      }
+    }
+
+    /* HILOS ORIGINALES */
+
+    .cuerda {
+      position: absolute;
+      width: 2px;
+      background: #666;
+      z-index: 3;
+      transform-origin: top center;
+
+      animation:
+        ocultarHiloOriginal 0.15s ease 5.7s forwards;
+    }
+
+    .cuerda-carl {
+      top: -33px;
+      right: 30px;
+      height: 95px;
+      transform: rotate(5deg);
+    }
+
+    .cuerda-ellie {
+      top: -33px;
+      left: 45%;
+      height: 55px;
+      transform: rotate(-5deg);
+    }
+
+    @keyframes ocultarHiloOriginal {
+      to {
+        opacity: 0;
+      }
+    }
+
+    /* VUELO DIAGONAL */
+
+    @keyframes vueloCarl {
+      0% {
+        transform:
+          translate(-35vw, 110vh)
+          rotate(-8deg);
+        opacity: 0;
+      }
+
+      25% {
+        opacity: 1;
+      }
+
+      65% {
+        transform:
+          translate(-12vw, -25px)
+          rotate(4deg);
+      }
+
+      85% {
+        transform:
+          translate(-3vw, 10px)
+          rotate(-2deg);
+      }
+
+      100% {
+        transform:
+          translate(0, 0)
+          rotate(0deg);
+        opacity: 1;
+      }
+    }
+
+    @keyframes vueloEllie {
+      0% {
+        transform:
+          translate(35vw, 110vh)
+          rotate(8deg);
+        opacity: 0;
+      }
+
+      25% {
+        opacity: 1;
+      }
+
+      65% {
+        transform:
+          translate(12vw, -25px)
+          rotate(-4deg);
+      }
+
+      85% {
+        transform:
+          translate(3vw, 10px)
+          rotate(2deg);
+      }
+
+      100% {
+        transform:
+          translate(0, 0)
+          rotate(0deg);
+        opacity: 1;
+      }
+    }
+
+    /* CORAZON GIGANTE */
+
+    .corazon-aniversario {
+      position: absolute;
+      left: 50%;
+      top: 9%;
+
+      /*
+        Aprovecha ancho y altura.
+        Ya no tiene el limite de 360px.
+      */
+      width: min(96vw, 660px, 62dvh);
+
+      transform: translateX(-50%);
+      opacity: 0;
+      z-index: 4;
+
+      animation:
+        aparecerCorazon 0.5s ease 5.7s forwards;
+    }
+
+    .corazon-globos {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    @keyframes aparecerCorazon {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* GLOBOS MULTICOLORES */
+
+    .globo-corazon {
+      opacity: 0;
+      transform-box: fill-box;
+      transform-origin: center;
+
+      animation:
+        expandirGlobo 1.1s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        both;
+    }
+
+    @keyframes expandirGlobo {
+      0% {
+        opacity: 0;
+        transform:
+          translate(
+            var(--movimiento-x),
+            var(--movimiento-y)
+          )
+          scale(0.15);
+      }
+
+      35% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+      }
+    }
+
+   
+/* MENSAJE CENTRADO EN EL CORAZÓN */
+
+
+/* CONTENEDOR DEL MENSAJE */
+
+.mensaje-corazon {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  width: 58%;
+
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  color: #914c70;
+  font-family: Georgia, serif;
+  font-size: clamp(14px, 2vw, 19px);
+  line-height: 1.4;
+
+  z-index: 5;
+}
+
+/* AMBAS PARTES OCUPAN EL MISMO ESPACIO */
+
+.mensaje-parte {
+  width: 100%;
+}
+
+.mensaje-parte p {
+  margin: 0 0 12px;
+}
+
+/* PRIMER MENSAJE */
+
+
+.mensaje-parte-1 {
+  position: relative;
+  top: 35px;
+
+  opacity: 0;
+  animation: primeraParte 6s ease 7.1s both;
+}
+
+
+@keyframes primeraParte {
+  0% {
+    opacity: 0;
+  }
+
+  15%, 75% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* SEGUNDO MENSAJE */
+
+.mensaje-parte-2 {
+  position: absolute;
+  top: 85%;
+  left: 0;
+
+  transform: translateY(-50%);
+  opacity: 0;
+
+  animation: segundaParte 1.2s ease 13.1s forwards;
+}
+
+@keyframes segundaParte {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+    .mensaje-corazon p {
+
+
+/* DISTRIBUCIÓN DEL MENSAJE */
+
+.mensaje-corazon {
+  top: 49%;
+  width: 60%;
+}
+
+.mensaje-corazon p {
+  margin-bottom: 5px;
+}
+
+/* Primera frase */
+.mensaje-corazon p:nth-child(1) {
+  max-width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Segunda frase */
+.mensaje-corazon p:nth-child(2) {
+  max-width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Tercera frase */
+.mensaje-corazon p:nth-child(3) {
+  max-width: 82%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Cuarta frase */
+.mensaje-corazon p:nth-child(4) {
+  max-width: 68%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Última frase */
+.mensaje-corazon p:nth-child(5) {
+  max-width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+      margin: 0 0 2px;
+      opacity: 0;
+
+      animation:
+        aparecerFrase 0.8s ease forwards;
+    }
+
+    .mensaje-corazon p:nth-child(1) {
+      animation-delay: 7.1s;
+    }
+
+    .mensaje-corazon p:nth-child(2) {
+      animation-delay: 8.1s;
+    }
+
+    .mensaje-corazon p:nth-child(3) {
+      animation-delay: 9.1s;
+    }
+
+    .mensaje-corazon p:nth-child(4) {
+      animation-delay: 10.1s;
+    }
+
+    .mensaje-corazon p:nth-child(5) {
+      animation-delay: 11.1s;
+    }
+
+    @keyframes aparecerFrase {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* HILOS FINALES */
+
+    .hilos-corazon {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 3;
+
+      opacity: 0;
+
+      animation:
+        mostrarHilosFinales 0.15s ease 5.7s forwards;
+    }
+
+    .hilos-corazon path {
+      fill: none;
+      stroke: #666;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
+    @keyframes mostrarHilosFinales {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* IPHONE */
+
+    @media (max-width: 600px) {
+      .personaje-con-globo {
+        height: 25dvh;
+      }
+
+      .carl {
+        left: 31%;
+      }
+
+      .ellie {
+        right: 31%;
+      }
+
+      .globo {
+        scale: 0.75;
+        transform-origin: bottom center;
+      }
+
+      
+.mensaje-corazon {
+  top: 48%;
+  width: 60%;
+  font-size: clamp(11px, 2.7vw, 14px);
+  line-height: 1.25;
+}
+
+.mensaje-parte p {
+  margin-bottom: 7px;
+}
+
+
+      .mensaje-corazon p {
+        margin-bottom: 2px;
+      }
+    }
+
+/* NUESTRO TIEMPO JUNTOS */
+
+.tiempo-juntos {
+  margin-top: 30px !important;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #c04478;
+  letter-spacing: 0.3px;
+}
+
+/* BOTÓN ROMÁNTICO */
+
+.btn-leer-carta {
+  position: absolute;
+  bottom: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 13px 25px;
+  border: none;
+  border-radius: 30px;
+
+  background: #f47ba9;
+  color: white;
+
+  font-family: Georgia, serif;
+  font-size: 16px;
+  font-weight: bold;
+
+  box-shadow: 0 5px 18px #b94b7b45;
+
+  cursor: pointer;
+  z-index: 8;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  animation: mostrarBoton 1s ease 15s forwards;
+}
+
+@keyframes mostrarBoton {
+  0% {
+    opacity: 0;
+    visibility: visible;
+    transform: translate(-50%, 15px);
+  }
+
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+    pointer-events: auto;
+  }
+}
+
+.btn-leer-carta:hover {
+  background: #e65f96;
+}
+
+@media (max-width: 600px) {
+  .btn-leer-carta {
+    bottom: 2%;
+    padding: 12px 20px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+}
+
+
+
+/* PANTALLA DE INICIO */
+
+.pantalla-inicio {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    #8bd6ff,
+    #dff7ff,
+    #fff0f5
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+#btn-comenzar {
+  border: none;
+  border-radius: 35px;
+  padding: 18px 28px;
+  background: #f47ba9;
+  color: white;
+  font: bold 18px Georgia, serif;
+  cursor: pointer;
+  box-shadow: 0 6px 20px #b94b7b45;
+}
+
+/* Animación detenida hasta comenzar */
+
+body:not(.aventura-iniciada) .escena,
+body:not(.aventura-iniciada) .escena * {
+  animation-play-state: paused !important;
+}
+
+  </style>
+</head>
+
+<body>
+
+
+<!-- PANTALLA DE INICIO -->
+<div id="pantalla-inicio" class="pantalla-inicio">
+  <button id="btn-comenzar" type="button">
+    ❤️ DISFRUTA ESTA CARTA CORAZÓN, TE AMOO MUCHOOO❤️
+  </button>
+</div>
+
+<!-- MÚSICA DE NUESTRA AVENTURA -->
+<audio
+  id="musica-intro"
+  src="assets/musica/up.mp3"
+  preload="auto"
+  loop
+></audio>
+
+
+  <div class="escena">
+
+    <h1 class="titulo">
+     ❤️❤️ 13/11/2026 ❤️❤️
+    </h1>
+
+    <!-- CARL -->
+
+    <div class="personaje-con-globo carl">
+
+      <div class="globo globo-azul"></div>
+
+      <div class="cuerda cuerda-carl"></div>
+
+      <img
+        src="assets/imagenes/aniversario/carl.png"
+        class="imagen-personaje"
+        alt="Carl"
+      >
+
+    </div>
+
+    <!-- ELLIE -->
+
+    <div class="personaje-con-globo ellie">
+
+      <div class="globo globo-rosa"></div>
+
+      <div class="cuerda cuerda-ellie"></div>
+
+      <img
+        src="assets/imagenes/aniversario/ellie.png"
+        class="imagen-personaje"
+        alt="Ellie"
+      >
+
+    </div>
+
+    <!-- CORAZON DE GLOBOS -->
+
+    <div class="corazon-aniversario">
+
+      <svg
+        class="corazon-globos"
+        viewBox="0 0 400 440"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Corazón de globos multicolores"
+      >
+
+        <!-- Globos animados -->
+
+        <g id="grupo-globos"></g>
+
+      </svg>
+
+      <!-- MENSAJE -->
+
+     
+<!-- MENSAJE ROMÁNTICO EN DOS PARTES -->
+
+    <div class="mensaje-corazon">
+
+  <div class="mensaje-parte mensaje-parte-1">
+    <p>Hoy no es un día cualquiera... ❤️</p>
+
+    <p>Hoy, día 13, celebramos otro mes juntos.</p>
+
+    <p>
+      Otro mes de recuerdos, enseñanzas,
+      aprendizajes y aventuras.
+    </p>
+  </div>
+
+  
+<div class="mensaje-parte mensaje-parte-2">
+
+  <p>
+    Otro mes de crecer, de conocernos
+    y de seguir escribiendo nuestra historia.
+  </p>
+
+  <p>
+    Pero, sobre todo, otro mes juntos. ♡
+  </p>
+
+  <p class="tiempo-juntos">
+    ❤️ 5 años 8 meses ❤️
+  </p>
+
+</div>
+
+
+      </div>
+
+
+    </div>
+
+
+<!-- BOTÓN PARA ABRIR NUESTRA CARTA -->
+
+<button
+  class="btn-leer-carta"
+  type="button"
+>
+  💌 CARTA
+</button>
+
+    <!-- HILOS DEL CORAZON -->
+
+    <svg
+      id="hilos-corazon"
+      class="hilos-corazon"
+      aria-hidden="true"
+    >
+      <path id="hilo-carl-final"></path>
+      <path id="hilo-ellie-final"></path>
+    </svg>
+
+  </div>
+
+  <script>
+
+    /* CREAR GLOBOS DEL CORAZON */
+
+    const grupo = document.getElementById(
+      "grupo-globos"
+    );
+
+    const colores = [
+      "#ff8fb8",
+      "#65bfff",
+      "#ffd166",
+      "#95d5b2",
+      "#c8a2e8",
+      "#ffad85"
+    ];
+
+    const totalGlobos = 42;
+
+    for (let i = 0; i < totalGlobos; i++) {
+
+      const t = (i / totalGlobos) * Math.PI * 2;
+
+      const x =
+        200 + 10.5 * 16 *
+        Math.pow(Math.sin(t), 3);
+
+      
+const y =
+  220 - 10.5 * (
+    13 * Math.cos(t)
+    - 5 * Math.cos(2 * t)
+    - 2 * Math.cos(3 * t)
+    - Math.cos(4 * t)
+  );
+
+
+      const globo = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "ellipse"
+      );
+
+      globo.setAttribute("cx", x);
+      globo.setAttribute("cy", y);
+      globo.setAttribute("rx", 16);
+      globo.setAttribute("ry", 20);
+
+      globo.setAttribute(
+        "fill",
+        colores[i % colores.length]
+      );
+
+      globo.style.setProperty(
+        "--movimiento-x",
+        `${200 - x}px`
+      );
+
+      globo.style.setProperty(
+        "--movimiento-y",
+        `${398 - y}px`
+      );
+
+      globo.classList.add("globo-corazon");
+
+      globo.style.animationDelay =
+        `${5.7 + i * 0.025}s`;
+
+      grupo.appendChild(globo);
+    }
+
+    /* CONECTAR LOS HILOS */
+
+    const escenaHilos = document.querySelector(
+      ".escena"
+    );
+
+    const corazonHilos = document.querySelector(
+      ".corazon-aniversario"
+    );
+
+    const carlHilos = document.querySelector(
+      ".carl"
+    );
+
+    const ellieHilos = document.querySelector(
+      ".ellie"
+    );
+
+    const svgHilos = document.getElementById(
+      "hilos-corazon"
+    );
+
+    const hiloCarl = document.getElementById(
+      "hilo-carl-final"
+    );
+
+    const hiloEllie = document.getElementById(
+      "hilo-ellie-final"
+    );
+
+    function conectarHilos() {
+
+      const escena =
+        escenaHilos.getBoundingClientRect();
+
+      const corazon =
+        corazonHilos.getBoundingClientRect();
+
+      const carl =
+        carlHilos.getBoundingClientRect();
+
+      const ellie =
+        ellieHilos.getBoundingClientRect();
+
+      svgHilos.setAttribute(
+        "viewBox",
+        `0 0 ${escena.width} ${escena.height}`
+      );
+
+      /* Punta inferior real del SVG */
+
+      const destinoX =
+        corazon.left +
+        corazon.width * 0.5 -
+        escena.left;
+
+      const destinoY =
+        corazon.top +
+        corazon.height * (398 / 440) -
+        escena.top;
+
+      /* Mano de Carl: valores aprobados */
+
+      const carlX =
+        carl.left +
+        carl.width * 0.75 -
+        escena.left;
+
+      const carlY =
+        carl.top +
+        carl.height * 0.13 -
+        escena.top;
+
+      /* Mano de Ellie */
+
+      const ellieX =
+        ellie.left +
+        ellie.width * 0.48 -
+        escena.left;
+
+      const ellieY =
+        ellie.top +
+        ellie.height * 0.05 -
+        escena.top;
+
+      /* Hilo de Carl */
+
+      hiloCarl.setAttribute(
+        "d",
+        `M ${carlX} ${carlY}
+         Q ${carlX} ${destinoY + 40}
+         ${destinoX} ${destinoY}`
+      );
+
+      /* Hilo de Ellie */
+
+      hiloEllie.setAttribute(
+        "d",
+        `M ${ellieX} ${ellieY}
+         Q ${ellieX} ${destinoY + 40}
+         ${destinoX} ${destinoY}`
+      );
+    }
+
+    function actualizarAnimacion() {
+      conectarHilos();
+      requestAnimationFrame(
+        actualizarAnimacion
+      );
+    }
+
+    requestAnimationFrame(
+      actualizarAnimacion
+    );
+
+  </script>
+
+
+
+<script>
+  const botonComenzar =
+    document.getElementById("btn-comenzar");
+
+  const pantallaInicio =
+    document.getElementById("pantalla-inicio");
+
+  const musicaIntro =
+    document.getElementById("musica-intro");
+
+  botonComenzar.addEventListener("click", () => {
+    musicaIntro.volume = 0.5;
+
+    // Iniciar música desde el clic del usuario
+    musicaIntro.play().catch(() => {
+      console.log("No se pudo iniciar la música.");
+    });
+
+    
+/* ==========================================
+   ABRIR NUESTRO LIBRO ROMÁNTICO
+========================================== */
+
+const botonLeerCarta =
+    document.querySelector(".btn-leer-carta");
+
+botonLeerCarta.addEventListener("click", () => {
+
+    // Recuperar el ID de la carta y la vista previa
+    const parametros = new URLSearchParams(
+        window.location.search
+    );
+
+    const idCarta = parametros.get("carta");
+
+    if (!idCarta) {
+        alert("No se encontró la carta romántica.");
+        return;
+    }
+
+    // Detener la música de la introducción
+    musicaIntro.pause();
+    musicaIntro.currentTime = 0;
+
+    // Conservar los parámetros de la carta
+    const destino = new URL(
+        "carta-aniversario.html",
+        window.location.href
+    );
+
+    destino.search = parametros.toString();
+
+    // Abrir nuestro libro
+    window.location.href = destino.href;
+
+});
+
+    // Comenzar las animaciones
+    document.body.classList.add("aventura-iniciada");
+
+    // Quitar pantalla de inicio
+    pantallaInicio.style.display = "none";
+  });
+</script>
+
+</body>
+</html>
