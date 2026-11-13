@@ -153,11 +153,11 @@
     }
 
     .cuerda-carl {
-      top: -33px;
-      right: 30px;
-      height: 95px;
-      transform: rotate(5deg);
-    }
+    top: -33px;
+    right: 30px;
+    height: 95px;
+    transform: rotate(0deg);
+}
 
     .cuerda-ellie {
       top: -33px;
@@ -665,7 +665,7 @@ body:not(.aventura-iniciada) .escena * {
 <!-- MÚSICA DE NUESTRA AVENTURA -->
 <audio
   id="musica-intro"
-  src="assets/musica/up.mp3"
+  src="assets/musica/Up.mp3"
   preload="auto"
   loop
 ></audio>
@@ -994,8 +994,13 @@ const y =
     musicaIntro.volume = 0.5;
 
     // Iniciar música desde el clic del usuario
-    musicaIntro.play().catch(() => {
-      console.log("No se pudo iniciar la música.");
+    musicaIntro.play()
+    .then(() => {
+        console.log("🎶 Música iniciada correctamente");
+    })
+    .catch(error => {
+        console.error("❌ Error al reproducir música:", error);
+        alert("No se pudo reproducir la música: " + error.message);
     });
 
     
