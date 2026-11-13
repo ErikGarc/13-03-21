@@ -583,7 +583,10 @@
 </head>
 
 <body>
-
+    <!-- MÚSICA DE NUESTRO LIBRO ROMÁNTICO -->
+<audio id="musicaLibro" loop preload="auto">
+    <source src="assets/musica/EdSheeranPhotograph.mp3" type="audio/mpeg">
+</audio>
   <div class="contenedor-libro">
 
     <h1>❤️ Nuestra historia ❤️</h1>
@@ -1030,7 +1033,44 @@ console.log("📖 Nuestro libro romántico está listo.");
 });
 
 </script>
+<!-- BOTÓN DE MÚSICA DEL LIBRO -->
+<button id="btnMusicaLibro" type="button"
+    style="
+        position: fixed;
+        bottom: 85px;
+        right: 15px;
+        z-index: 2000;
+        padding: 12px 16px;
+        border: none;
+        border-radius: 25px;
+        background: #f47ba9;
+        color: white;
+        font-family: Georgia, serif;
+        cursor: pointer;
+        display: none;
+    ">
+    🎵 Escuchar nuestra canción
+</button>
 
+<script>
+const musicaLibro = document.getElementById("musicaLibro");
+const btnMusicaLibro = document.getElementById("btnMusicaLibro");
+
+async function iniciarMusicaLibro() {
+    try {
+        await musicaLibro.play();
+        btnMusicaLibro.style.display = "none";
+    } catch (error) {
+        console.log("El navegador requiere interacción para reproducir música.");
+        btnMusicaLibro.style.display = "block";
+    }
+}
+
+btnMusicaLibro.addEventListener("click", iniciarMusicaLibro);
+
+// Intentar reproducir al abrir el libro
+document.addEventListener("DOMContentLoaded", iniciarMusicaLibro);
+</script>
 
 </body>
 </html>
